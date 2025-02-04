@@ -4,7 +4,7 @@ const produtos = [
     {
         imagem: 'nhoque.png',
         nome: 'Nhoque à Bolonhesa',
-        descricao: 'Massa de arroz e batata com provolone, recheada com queijo, molho artesanal e temperos naturais.',
+        descricao: 'Massa de arroz e batata com provolone e gorgonzola, molho artesanal e temperos naturais.',
         preco: 'R$ 35,00'
     },
     {
