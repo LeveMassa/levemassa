@@ -3,7 +3,7 @@ const cardapio = document.getElementById('cardapio');
 const produtos = [
     {
         imagem: 'nhoque.png',
-        nome: 'Nhoque à Bolonhesa',
+        nome: 'Nhoque à Bolonhesa (500g)',
         descricao: 'Massa de arroz e batata com provolone e gorgonzola, molho artesanal e temperos naturais.',
         preco: 'R$ 35,00'
     },
