@@ -2,6 +2,12 @@ const cardapio = document.getElementById('cardapio');
 
 const produtos = [
     {
+        imagem: 'nhoque.png',
+        nome: 'Nhoque à Bolonhesa',
+        descricao: 'Massa de arroz e batata com provolone, recheada com queijo, molho artesanal e temperos naturais.',
+        preco: 'R$ 35,00'
+    },
+    {
         imagem: '4-queijos.jpeg',
         nome: 'Pizza 4 Queijos Magnífica (25cm)',
         descricao: 'Massa de arroz, molho pomodoro, mozzarella, gorgonzola, parmesão e requeijão cremoso.',
@@ -43,11 +49,12 @@ const produtos = [
         descricao: 'Massa de arroz, molho pomodoro, berinjela, molho pesto artesanal e tomate seco.',
         preco: 'R$ 32,00'
     },
+    
     {
-        imagem: 'nhoque.png',
-        nome: 'Nhoque à Bolonhesa',
-        descricao: 'Massa de arroz e batata com provolone, recheada com queijo, molho artesanal e temperos naturais.',
-        preco: 'R$ 35,00'
+        imagem: 'monte.png',
+        nome: 'Monte seu combo!',
+        descricao: 'Clique em faça seu pedido e monte seu combo personalizado.',
+        preco: ''
     }
 ];
 
