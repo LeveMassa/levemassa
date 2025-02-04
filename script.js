@@ -8,6 +8,12 @@ const produtos = [
         preco: 'R$ 35,00'
     },
     {
+        imagem: 'brasileirinha.png',
+        nome: 'Lasanha Brasileirinha (500g)',
+        descricao: 'Lasanha com base de abobrinha, molho pomodoro artesanal, lombo canadense, creme branco (requeijão com creme de leite e noz moscada) e queijo mozzarella.',
+        preco: 'R$ 32,00'
+    },
+    {
         imagem: '4-queijos.jpeg',
         nome: 'Pizza 4 Queijos Magnífica (25cm)',
         descricao: 'Massa de arroz, molho pomodoro, mozzarella, gorgonzola, parmesão e requeijão cremoso.',
