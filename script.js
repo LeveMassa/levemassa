@@ -55,10 +55,11 @@ produtos.forEach(produto => {
     const div = document.createElement('div');
     div.classList.add('produto');
     div.innerHTML = `
-        <img src="./assets/${produto.imagem}" alt="${produto.nome}">
+        <img src="assets/${produto.imagem}" alt="${produto.nome}">
         <h3>${produto.nome}</h3>
         <p>${produto.descricao}</p>
         <p><strong>${produto.preco}</strong></p>
     `;
     cardapio.appendChild(div);
 });
+
