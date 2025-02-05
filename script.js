@@ -49,9 +49,16 @@ const atualizarCarrinho = () => {
     }
 
     let mensagem = 'Olá! Quero fazer um pedido:\n\n';
+    let totalDoPedido = 0;
+
     carrinho.forEach(item => {
-        mensagem += `🍕 ${item.nome} (x${item.quantidade})\n`;
+        const precoItem = parseFloat(item.preco.replace('R$', '').replace(',', '.'));
+        const subtotalItem = precoItem * item.quantidade;
+        mensagem += `- ${item.nome} (x${item.quantidade}) - R$ ${subtotalItem.toFixed(2)}\n`;
+        totalDoPedido += subtotalItem;
     });
+
+    mensagem += `\n*Total do pedido: R$ ${totalDoPedido.toFixed(2)}*\n`;
 
     const url = `https://wa.me/5527995263903?text=${encodeURIComponent(mensagem)}`;
     whatsappBotao.href = url;
