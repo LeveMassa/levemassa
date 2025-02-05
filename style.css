@@ -1,16 +1,15 @@
 :root {
-    color-scheme: light !important;
+    color-scheme: light;
 }
 
 body {
     font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
-    background: linear-gradient(to bottom, #f8f9fa, #e8f5e9); /* Gradiente suave */
+    background: linear-gradient(to bottom, #f8f9fa, #e8f5e9);
     color: #333;
 }
 
-/* Gradiente no header */
 header {
     background: linear-gradient(135deg, #2d6a4f, #4caf50);
     padding: 20px;
@@ -24,47 +23,36 @@ header img {
     height: 120px;
     border-radius: 50%;
     object-fit: cover;
-    border: 3px solid white; /* Dá um destaque ao logo */
-}
-
-header h1 {
-    margin-top: 10px;
-    font-size: 28px;
-    color: white;
+    border: 3px solid white;
 }
 
 #cardapio {
-    width: 95%; /* Define a largura */
-    max-width: 1200px; /* Define um limite máximo para evitar esticar demais em telas grandes */
-    margin: 0 auto; /* Centraliza o container horizontalmente */
+    width: 95%;
+    max-width: 1200px;
+    margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; /* Garante que os itens fiquem alinhados ao centro */
+    justify-content: center;
     gap: 20px;
-    padding: 20px 0; /* Adiciona espaçamento vertical para melhor estética */
+    padding: 20px 0;
 }
-
 
 .produto {
     width: 320px;
     border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
     background: white;
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
     padding: 20px;
-    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    text-align: center;
 }
 
 .produto:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.25);
+    transform: scale(1.02);
+    box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.2);
 }
-
 
 .produto img {
     width: 100%;
@@ -85,45 +73,125 @@ header h1 {
     margin: 5px 0;
 }
 
-/* Melhorando o botão do WhatsApp */
-.whatsapp-button {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
+/* Estilização do botão de adicionar/remover */
+.contador {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(to right, #25d366, #1ebe57);
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.contador button {
+    background: #2d6a4f;
     color: white;
+    border: none;
+    padding: 8px 14px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+    font-weight: bold;
+}
+
+.contador button:hover {
+    background: #1b4931;
+    transform: scale(1.1);
+}
+
+.contador span {
     font-size: 18px;
-    padding: 12px 20px;
+    font-weight: bold;
+    color: #2d6a4f;
+}
+
+.botao-carrinho {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    background: #ff9800;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    font-size: 16px;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+}
+
+.botao-carrinho:hover {
+    transform: scale(1.1);
+}
+
+.carrinho-flutuante {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    width: 300px;
+    max-height: 400px;
+    overflow-y: auto;
+    display: none;
+}
+
+.carrinho-flutuante.mostrar {
+    display: block;
+}
+
+.botao-whatsapp-flutuante {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: #25d366;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    padding: 12px 18px;
     border-radius: 50px;
     text-decoration: none;
     font-weight: bold;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
-    animation: pulse 1.5s infinite;
+    z-index: 9999;
 }
 
-.whatsapp-button:hover {
-    background: linear-gradient(to right, #1ebe57, #128C7E);
+.botao-whatsapp-flutuante:hover {
+    background: #1ebe57;
     transform: scale(1.1);
 }
 
-.whatsapp-button img {
-    width: 24px;
-    height: 24px;
-    margin-right: 10px;
+.botao-whatsapp-flutuante img {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
 }
 
-/* Responsividade */
-@media (max-width: 768px) {
-    .produto {
-        width: 90%;
-    }
+.fechar-carrinho {
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    transition: background 0.3s ease-in-out;
+    width: 100%;
+    text-align: center;
+}
 
-    .whatsapp-button {
-        font-size: 16px;
-        padding: 10px 15px;
-    }
+.fechar-carrinho:hover {
+    background: #cc0000;
+}
+
+.container-fechar {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
 }

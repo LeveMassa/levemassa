@@ -1,4 +1,110 @@
 const cardapio = document.getElementById('cardapio');
+const carrinho = [];
+const carrinhoBotao = document.createElement('button');
+const carrinhoContainer = document.createElement('div');
+const fecharCarrinhoBotao = document.createElement('button');
+
+carrinhoBotao.classList.add('botao-carrinho');
+carrinhoBotao.innerHTML = '🛒 Ver Carrinho';
+carrinhoBotao.onclick = () => {
+    carrinhoContainer.classList.toggle('mostrar');
+};
+document.body.appendChild(carrinhoBotao);
+
+carrinhoContainer.classList.add('carrinho-flutuante');
+document.body.appendChild(carrinhoContainer);
+
+fecharCarrinhoBotao.classList.add('fechar-carrinho');
+fecharCarrinhoBotao.innerHTML = '✖ Fechar';
+fecharCarrinhoBotao.onclick = () => {
+    carrinhoContainer.classList.remove('mostrar');
+};
+
+const whatsappBotao = document.createElement('a');
+whatsappBotao.classList.add('botao-whatsapp-flutuante');
+whatsappBotao.href = "#";
+whatsappBotao.target = "_blank";
+whatsappBotao.innerHTML = `
+    <img src="assets/whatsapp-icon.png" alt="WhatsApp">
+    Peça já pelo WhatsApp!
+`;
+document.body.appendChild(whatsappBotao);
+
+const atualizarCarrinho = () => {
+    carrinhoContainer.innerHTML = `<h3>🛒 Seu Carrinho</h3>`;
+
+    const fecharBotaoDiv = document.createElement('div');
+    fecharBotaoDiv.classList.add('container-fechar');
+    fecharBotaoDiv.appendChild(fecharCarrinhoBotao);
+    carrinhoContainer.appendChild(fecharBotaoDiv);
+
+    if (carrinho.length === 0) {
+        carrinhoContainer.innerHTML += '<p>O carrinho está vazio.</p>';
+    } else {
+        carrinho.forEach((item, index) => {
+            const itemDiv = document.createElement('div');
+            itemDiv.classList.add('item-carrinho');
+            itemDiv.innerHTML = `
+                <span>${item.nome} <strong>(x${item.quantidade})</strong></span>
+                <button class="botao-remover" onclick="removerItem('${item.nome}')">🗑️</button>
+            `;
+            carrinhoContainer.appendChild(itemDiv);
+        });
+    }
+
+    let mensagem = 'Olá! Quero fazer um pedido:\n\n';
+    carrinho.forEach(item => {
+        mensagem += `🍕 ${item.nome} (x${item.quantidade})\n`;
+    });
+
+    const url = `https://wa.me/5527995263903?text=${encodeURIComponent(mensagem)}`;
+    whatsappBotao.href = url;
+
+    const finalizarPedidoBotao = document.createElement('button');
+    finalizarPedidoBotao.classList.add('botao-whatsapp');
+    finalizarPedidoBotao.innerHTML = 'Finalizar Pedido';
+    finalizarPedidoBotao.onclick = enviarPedidoWhatsApp;
+    carrinhoContainer.appendChild(finalizarPedidoBotao);
+};
+
+const adicionarAoCarrinho = (produto) => {
+    const existe = carrinho.find(item => item.nome === produto.nome);
+    if (existe) {
+        existe.quantidade += 1;
+    } else {
+        carrinho.push({ ...produto, quantidade: 1 });
+    }
+    atualizarCarrinho();
+    atualizarContador(produto.nome);
+};
+
+const removerItem = (nomeProduto) => {
+    const index = carrinho.findIndex(item => item.nome === nomeProduto);
+    if (index !== -1) {
+        if (carrinho[index].quantidade > 1) {
+            carrinho[index].quantidade -= 1;
+        } else {
+            carrinho.splice(index, 1);
+        }
+    }
+    atualizarCarrinho();
+    atualizarContador(nomeProduto);
+};
+
+const atualizarContador = (nomeProduto) => {
+    const produto = carrinho.find(item => item.nome === nomeProduto);
+    if (produto) {
+        document.getElementById(`contador-${nomeProduto}`).innerHTML = `
+            <button class="contador-menos" onclick="removerItem('${nomeProduto}')">-</button>
+            <span>${produto.quantidade}</span>
+            <button class="contador-mais" onclick="adicionarAoCarrinho(produtos.find(p => p.nome === '${nomeProduto}'))">+</button>
+        `;
+    } else {
+        document.getElementById(`contador-${nomeProduto}`).innerHTML = `
+            <button class="contador-mais" onclick="adicionarAoCarrinho(produtos.find(p => p.nome === '${nomeProduto}'))">+ Adicionar</button>
+        `;
+    }
+};
 
 const produtos = [
     {
@@ -55,7 +161,6 @@ const produtos = [
         descricao: 'Massa de arroz, molho pomodoro, berinjela, molho pesto artesanal e tomate seco.',
         preco: 'R$ 32,00'
     },
-    
     {
         imagem: 'monte.png',
         nome: 'Monte seu combo Sem Glúten!',
@@ -72,7 +177,11 @@ produtos.forEach(produto => {
         <h3>${produto.nome}</h3>
         <p>${produto.descricao}</p>
         <p><strong>${produto.preco}</strong></p>
+        <div class="contador" id="contador-${produto.nome}">
+            <button class="contador-mais" onclick="adicionarAoCarrinho(produtos.find(p => p.nome === '${produto.nome}'))">+ Adicionar</button>
+        </div>
     `;
     cardapio.appendChild(div);
 });
 
+document.addEventListener("DOMContentLoaded", atualizarCarrinho);
