@@ -15,10 +15,10 @@ carrinhoContainer.classList.add('carrinho-flutuante');
 document.body.appendChild(carrinhoContainer);
 
 fecharCarrinhoBotao.classList.add('fechar-carrinho');
-fecharCarrinhoBotao.innerHTML = '✖ Fechar';
-fecharCarrinhoBotao.onclick = () => {
+fecharCarrinhoBotao.textContent = '✖ Fechar';
+fecharCarrinhoBotao.addEventListener('click', () => {
     carrinhoContainer.classList.remove('mostrar');
-};
+});
 
 const whatsappBotao = document.createElement('a');
 whatsappBotao.classList.add('botao-whatsapp-flutuante');
@@ -32,16 +32,27 @@ document.body.appendChild(whatsappBotao);
 
 const atualizarCarrinho = () => {
     carrinhoContainer.innerHTML = `<h3>🛒 Seu Carrinho</h3>`;
+
     carrinhoContainer.appendChild(fecharCarrinhoBotao);
 
     if (carrinho.length === 0) {
-        carrinhoContainer.innerHTML += '<p>O carrinho está vazio.</p>';
+        const mensagemVazio = document.createElement('p');
+        mensagemVazio.textContent = 'O carrinho está vazio.';
+        carrinhoContainer.appendChild(mensagemVazio);
     } else {
         carrinho.forEach(item => {
             const itemDiv = document.createElement('div');
             itemDiv.classList.add('item-carrinho');
             itemDiv.innerHTML = `
-                <span>${item.nome} <strong>(x${item.quantidade})</strong></span>
+                <img src="assets/${item.imagem}" alt="${item.nome}">
+                <div>
+                    <div class="nome-produto" title="${item.nome}">${item.nome}</div>
+                    <div class="controle-quantidade">
+                        <button class="botao-quantidade" onclick="alterarQuantidade('${item.nome}', -1)">-</button>
+                        <span class="quantidade-produto">${item.quantidade}</span>
+                        <button class="botao-quantidade" onclick="alterarQuantidade('${item.nome}', 1)">+</button>
+                    </div>
+                </div>
                 <button class="botao-remover" onclick="removerItem('${item.nome}')">🗑️</button>
             `;
             carrinhoContainer.appendChild(itemDiv);
@@ -52,7 +63,7 @@ const atualizarCarrinho = () => {
     let totalDoPedido = 0;
 
     carrinho.forEach(item => {
-        const precoItem = parseFloat(item.preco.replace('R$', '').replace(',', '.'));
+        const precoItem = parseFloat(item.preco.replace('R$', '').replace(',', '.')) || 0;
         const subtotalItem = precoItem * item.quantidade;
         mensagem += `- ${item.nome} (x${item.quantidade}) - R$ ${subtotalItem.toFixed(2)}\n`;
         totalDoPedido += subtotalItem;
@@ -63,6 +74,7 @@ const atualizarCarrinho = () => {
     const url = `https://wa.me/5527995263903?text=${encodeURIComponent(mensagem)}`;
     whatsappBotao.href = url;
 };
+
 
 const adicionarAoCarrinho = (produto) => {
     const existe = carrinho.find(item => item.nome === produto.nome);
@@ -78,15 +90,12 @@ const adicionarAoCarrinho = (produto) => {
 const removerItem = (nomeProduto) => {
     const index = carrinho.findIndex(item => item.nome === nomeProduto);
     if (index !== -1) {
-        if (carrinho[index].quantidade > 1) {
-            carrinho[index].quantidade -= 1;
-        } else {
-            carrinho.splice(index, 1);
-        }
+        carrinho.splice(index, 1); // Remover diretamente o item
     }
     atualizarCarrinho();
     atualizarContador(nomeProduto);
 };
+
 
 const atualizarContador = (nomeProduto) => {
     const produto = carrinho.find(item => item.nome === nomeProduto);
@@ -102,6 +111,23 @@ const atualizarContador = (nomeProduto) => {
         contadorDiv.innerHTML = `<button class="contador-mais unico" onclick="adicionarAoCarrinho(produtos.find(p => p.nome === '${nomeProduto}'))">+ Adicionar</button>`;
     }
 };
+
+const alterarQuantidade = (nomeProduto, operacao) => {
+    const produto = carrinho.find(item => item.nome === nomeProduto);
+
+    if (produto) {
+        produto.quantidade += operacao;
+
+        // Remover o item se a quantidade chegar a 0
+        if (produto.quantidade <= 0) {
+            removerItem(nomeProduto);
+        }
+    }
+
+    atualizarCarrinho();
+    atualizarContador(nomeProduto);
+};
+
 
 const produtos = [
     {
