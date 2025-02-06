@@ -38,11 +38,12 @@ header img {
 }
 
 .produto {
-    width: 320px;
+    width: 100%;
+    max-width: 300px;
     border-radius: 16px;
     overflow: hidden;
     background: white;
-    padding: 20px;
+    padding: 15px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(0, 0, 0, 0.05);
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
@@ -56,15 +57,15 @@ header img {
 
 .produto img {
     width: 100%;
-    height: 200px;
+    height: 180px;
     object-fit: cover;
     border-radius: 8px;
 }
 
 .produto h3 {
     color: #2d6a4f;
-    font-size: 20px;
-    margin-top: 10px;
+    font-size: 18px;
+    margin-top: 8px;
 }
 
 .produto p {
@@ -86,8 +87,8 @@ header img {
     background: #2d6a4f;
     color: white;
     border: none;
-    padding: 8px 14px;
-    font-size: 16px;
+    padding: 8px 12px;
+    font-size: 14px;
     border-radius: 8px;
     cursor: pointer;
     transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
@@ -96,18 +97,18 @@ header img {
 
 .contador button:hover {
     background: #1b4931;
-    transform: scale(1.1);
+    transform: scale(1.05);
 }
 
 .contador span {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: bold;
     color: #2d6a4f;
 }
 
 .botao-carrinho {
     position: fixed;
-    bottom: 80px;
+    bottom: 20px;
     right: 20px;
     background: #ff9800;
     color: white;
@@ -151,9 +152,9 @@ header img {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 16px;
-    padding: 12px 18px;
-    border-radius: 50px;
+    font-size: 20px;
+    padding: 14px;
+    border-radius: 50%;
     text-decoration: none;
     font-weight: bold;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
@@ -167,9 +168,48 @@ header img {
 }
 
 .botao-whatsapp-flutuante img {
-    width: 20px;
-    height: 20px;
-    margin-right: 8px;
+    width: 28px;
+    height: 28px;
+    margin: 0;
+}
+
+/* Balão de Mensagem */
+.balao-mensagem {
+    position: absolute;
+    bottom: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #ffffff;
+    color: #333;
+    padding: 8px 18px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    font-size: 14px;
+    font-weight: bold;
+    display: none;
+    animation: fadeInOut 4s ease-in-out infinite;
+}
+
+/* Setinha do balão */
+.balao-mensagem::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 20%;
+    transform: translateX(-50%);
+    border-width: 10px 10px 0 10px;
+    border-style: solid;
+    border-color: #ffffff transparent transparent transparent;
+}
+
+@keyframes fadeInOut {
+    0%, 100% { opacity: 0; transform: translateY(10px); }
+    10%, 90% { opacity: 1; transform: translateY(0); }
+}
+
+/* Exibir aleatoriamente */
+.balao-mensagem.mostrar {
+    display: block;
 }
 
 .fechar-carrinho {
@@ -304,3 +344,112 @@ header img {
     color: #333;
 }
 
+/* Contador do Externo do Carrinho */
+.contador-externo-carrinho {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: red;
+    color: white;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    header {
+        padding: 15px;
+    }
+
+    header img {
+        width: 80px;
+        height: 80px;
+    }
+
+    #cardapio {
+        padding: 10px 0;
+        gap: 10px;
+    }
+
+    .produto {
+        max-width: 90%;
+        padding: 10px;
+    }
+
+    .produto img {
+        height: 150px;
+    }
+
+    .produto h3 {
+        font-size: 16px;
+    }
+
+    .produto p {
+        font-size: 0.85em;
+    }
+
+    .contador button {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+
+    .contador span {
+        font-size: 14px;
+    }
+
+    .botao-carrinho, 
+    .botao-whatsapp-flutuante {
+        padding: 10px 14px;
+        font-size: 14px;
+        bottom: 15px;
+    }
+
+    .carrinho-flutuante {
+        width: 90%;
+        right: 5%;
+        bottom: 70px;
+        max-height: 300px;
+    }
+
+    .balao-mensagem {
+        font-size: 12px;
+        padding: 6px 14px;
+    }
+
+    .fechar-carrinho {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+
+    .item-carrinho img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .nome-produto {
+        max-width: 120px;
+        font-size: 12px;
+    }
+
+    .quantidade-produto {
+        font-size: 10px;
+    }
+
+    .botao-quantidade {
+        padding: 3px 6px;
+        font-size: 12px;
+    }
+
+    .contador-externo-carrinho {
+        width: 16px;
+        height: 16px;
+        font-size: 10px;
+    }
+}

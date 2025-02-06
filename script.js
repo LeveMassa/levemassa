@@ -1,9 +1,9 @@
 const cardapio = document.getElementById('cardapio');
 const carrinho = [];
-const carrinhoBotao = document.createElement('button');
-const carrinhoContainer = document.createElement('div');
-const fecharCarrinhoBotao = document.createElement('button');
+let produtos = [];
 
+// Botão do carrinho
+const carrinhoBotao = document.createElement('button');
 carrinhoBotao.classList.add('botao-carrinho');
 carrinhoBotao.innerHTML = '🛒 Ver Carrinho';
 carrinhoBotao.onclick = () => {
@@ -11,29 +11,52 @@ carrinhoBotao.onclick = () => {
 };
 document.body.appendChild(carrinhoBotao);
 
+// Contêiner do carrinho
+const carrinhoContainer = document.createElement('div');
 carrinhoContainer.classList.add('carrinho-flutuante');
 document.body.appendChild(carrinhoContainer);
 
-fecharCarrinhoBotao.classList.add('fechar-carrinho');
-fecharCarrinhoBotao.textContent = '✖ Fechar';
-fecharCarrinhoBotao.addEventListener('click', () => {
-    carrinhoContainer.classList.remove('mostrar');
-});
+// Contador do carrinho
+const contadorCarrinho = document.createElement('div');
+contadorCarrinho.classList.add('contador-externo-carrinho');
+contadorCarrinho.textContent = '0';
+carrinhoBotao.appendChild(contadorCarrinho);
 
-const whatsappBotao = document.createElement('a');
-whatsappBotao.classList.add('botao-whatsapp-flutuante');
-whatsappBotao.href = "#";
-whatsappBotao.target = "_blank";
-whatsappBotao.innerHTML = `
-    <img src="assets/whatsapp-icon.png" alt="WhatsApp">
-    Peça já pelo WhatsApp!
-`;
-document.body.appendChild(whatsappBotao);
+// Função para limpar o carrinho
+const limparCarrinho = () => {
+    // Atualiza o contador de todos os produtos antes de esvaziar o carrinho
+    carrinho.forEach(item => {
+        const contadorDiv = document.getElementById(`contador-${item.nome}`);
+        if (contadorDiv) {
+            contadorDiv.innerHTML = `
+                <button class="contador-mais unico" onclick="adicionarAoCarrinho(this)" 
+                    data-nome="${item.nome}">
+                    + Adicionar
+                </button>
+            `;
+        }
+    });
 
+    carrinho.length = 0; // Esvazia o array do carrinho
+    atualizarCarrinho();
+    atualizarContadorCarrinho();
+};
+
+// Atualiza o contador externo do carrinho
+const atualizarContadorCarrinho = () => {
+    const quantidadeTotal = carrinho.reduce((total, item) => total + item.quantidade, 0);
+    contadorCarrinho.textContent = quantidadeTotal;
+    contadorCarrinho.style.display = quantidadeTotal > 0 ? 'flex' : 'none';
+};
+
+// Atualiza o carrinho
 const atualizarCarrinho = () => {
-    carrinhoContainer.innerHTML = `<h3>🛒 Seu Carrinho</h3>`;
-
-    carrinhoContainer.appendChild(fecharCarrinhoBotao);
+    carrinhoContainer.innerHTML = `
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+            <h3>🛒 Seu Carrinho</h3>
+            <button class="botao-limpar-carrinho" onclick="limparCarrinho()">🗑️ Limpar</button>
+        </div>
+    `;
 
     if (carrinho.length === 0) {
         const mensagemVazio = document.createElement('p');
@@ -53,158 +76,140 @@ const atualizarCarrinho = () => {
                         <button class="botao-quantidade" onclick="alterarQuantidade('${item.nome}', 1)">+</button>
                     </div>
                 </div>
-                <button class="botao-remover" onclick="removerItem('${item.nome}')">🗑️</button>
+                <button class="botao-remover" onclick="removerItem('${item.nome}', true)">🗑️</button>
             `;
             carrinhoContainer.appendChild(itemDiv);
         });
     }
-
-    let mensagem = 'Olá! Quero fazer um pedido:\n\n';
-    let totalDoPedido = 0;
-
-    carrinho.forEach(item => {
-        const precoItem = parseFloat(item.preco.replace('R$', '').replace(',', '.')) || 0;
-        const subtotalItem = precoItem * item.quantidade;
-        mensagem += `- ${item.nome} (x${item.quantidade}) - R$ ${subtotalItem.toFixed(2)}\n`;
-        totalDoPedido += subtotalItem;
-    });
-
-    mensagem += `\n*Total do pedido: R$ ${totalDoPedido.toFixed(2)}*\n`;
-
-    const url = `https://wa.me/5527995263903?text=${encodeURIComponent(mensagem)}`;
-    whatsappBotao.href = url;
+    atualizarContadorCarrinho();
 };
 
+// Adiciona produto ao carrinho
+const adicionarAoCarrinho = (button) => {
+    const nomeProduto = button.dataset.nome;
+    const produtoCompleto = produtos.find(p => p.nome === nomeProduto);
 
-const adicionarAoCarrinho = (produto) => {
-    const existe = carrinho.find(item => item.nome === produto.nome);
+    const existe = carrinho.find(item => item.nome === nomeProduto);
     if (existe) {
         existe.quantidade += 1;
-    } else {
-        carrinho.push({ ...produto, quantidade: 1 });
-    }
-    atualizarCarrinho();
-    atualizarContador(produto.nome);
-};
-
-const removerItem = (nomeProduto) => {
-    const index = carrinho.findIndex(item => item.nome === nomeProduto);
-    if (index !== -1) {
-        carrinho.splice(index, 1); // Remover diretamente o item
+    } else if (produtoCompleto) {
+        carrinho.push({ ...produtoCompleto, quantidade: 1 });
     }
     atualizarCarrinho();
     atualizarContador(nomeProduto);
 };
 
-
-const atualizarContador = (nomeProduto) => {
+// Remove item do carrinho
+const removerItem = (nomeProduto, removerTudo = false) => {
     const produto = carrinho.find(item => item.nome === nomeProduto);
-    const contadorDiv = document.getElementById(`contador-${nomeProduto}`);
-
     if (produto) {
-        contadorDiv.innerHTML = `
-            <button class="contador-menos" onclick="removerItem('${nomeProduto}')">-</button>
-            <span class="contador-quantidade">${produto.quantidade}</span>
-            <button class="contador-mais" onclick="adicionarAoCarrinho(produtos.find(p => p.nome === '${nomeProduto}'))">+</button>
-        `;
-    } else {
-        contadorDiv.innerHTML = `<button class="contador-mais unico" onclick="adicionarAoCarrinho(produtos.find(p => p.nome === '${nomeProduto}'))">+ Adicionar</button>`;
+        if (removerTudo) {
+            // Remove o item completamente
+            const index = carrinho.findIndex(item => item.nome === nomeProduto);
+            carrinho.splice(index, 1);
+        } else {
+            // Diminui a quantidade normalmente
+            if (produto.quantidade > 1) {
+                produto.quantidade -= 1;
+            } else {
+                const index = carrinho.findIndex(item => item.nome === nomeProduto);
+                carrinho.splice(index, 1);
+            }
+        }
     }
+    atualizarCarrinho();
+    atualizarContador(nomeProduto);
+    atualizarContadorCarrinho();
 };
 
+// Altera a quantidade de um item no carrinho
 const alterarQuantidade = (nomeProduto, operacao) => {
     const produto = carrinho.find(item => item.nome === nomeProduto);
-
     if (produto) {
         produto.quantidade += operacao;
-
-        // Remover o item se a quantidade chegar a 0
         if (produto.quantidade <= 0) {
             removerItem(nomeProduto);
         }
     }
-
     atualizarCarrinho();
     atualizarContador(nomeProduto);
 };
 
+// Atualiza o contador ao lado de cada produto
+const atualizarContador = (nomeProduto) => {
+    const produto = carrinho.find(item => item.nome === nomeProduto);
+    const contadorDiv = document.getElementById(`contador-${nomeProduto}`);
 
-const produtos = [
-    {
-        imagem: 'nhoque.png',
-        nome: 'Nhoque à Bolonhesa Sem Glúten (500g)',
-        descricao: 'Massa de arroz e batata com provolone e gorgonzola, molho artesanal e temperos naturais.',
-        preco: 'R$ 35,00'
-    },
-    {
-        imagem: 'brasileirinha.png',
-        nome: 'Lasanha Brasileirinha Sem Glúten Low Carb (500g)',
-        descricao: 'Lasanha com base de abobrinha, molho pomodoro artesanal, lombo canadense, creme branco e queijo mozzarella.',
-        preco: 'R$ 32,00'
-    },
-    {
-        imagem: '4-queijos.jpeg',
-        nome: 'Pizza 4 Queijos Magnífica Sem Glúten (25cm)',
-        descricao: 'Massa de arroz, molho pomodoro, mozzarella, gorgonzola, parmesão e requeijão cremoso.',
-        preco: 'R$ 35,00'
-    },
-    {
-        imagem: 'calabresa.jpeg',
-        nome: 'Pizza Calabresa Sem Glúten (25cm)',
-        descricao: 'Massa de arroz, molho pomodoro, mozzarella, calabresa e cebola.',
-        preco: 'R$ 32,00'
-    },
-    {
-        imagem: 'frangoporo.jpeg',
-        nome: 'Pizza Frango Poró Sem Glúten (25cm)',
-        descricao: 'Massa de arroz, molho artesanal, mozzarella, frango temperado, alho-poró, creme de queijo e castanha.',
-        preco: 'R$ 35,00'
-    },
-    {
-        imagem: 'portuguesa.jpeg',
-        nome: 'Pizza Portuguesa Sem Glúten (25cm)',
-        descricao: 'Massa de arroz, molho artesanal, calabresa, presunto, queijo, pimentão colorido, azeitona, ovo e orégano.',
-        preco: 'R$ 35,00'
-    },
-    {
-        imagem: 'presunto.png',
-        nome: 'Pizza Presunto Sem Glúten (25cm)',
-        descricao: 'Massa de arroz, molho pomodoro, mozzarella e presunto.',
-        preco: 'R$ 32,00'
-    },
-    {
-        imagem: 'marguerita.png',
-        nome: 'Pizza Marguerita Sem Glúten (25cm)',
-        descricao: 'Massa de arroz, molho artesanal, mozzarella, tomate cereja e manjericão.',
-        preco: 'R$ 30,00'
-    },
-    {
-        imagem: 'mandala.png',
-        nome: 'Pizza Vegana Mandala de Pesto Sem Glúten (25cm)',
-        descricao: 'Massa de arroz, molho pomodoro, berinjela, molho pesto artesanal e tomate seco.',
-        preco: 'R$ 32,00'
-    },
-    {
-        imagem: 'monte.png',
-        nome: 'Monte seu combo Sem Glúten!',
-        descricao: 'Clique em faça seu pedido e monte seu combo personalizado.',
-        preco: ''
+    if (contadorDiv) {
+        if (produto) {
+            contadorDiv.innerHTML = `
+                <button class="contador-menos" onclick="removerItem('${nomeProduto}')">-</button>
+                <span class="contador-quantidade">${produto.quantidade}</span>
+                <button class="contador-mais" onclick="adicionarAoCarrinho(this)" 
+                    data-nome="${produto.nome}">+</button>
+            `;
+        } else {
+            contadorDiv.innerHTML = `
+                <button class="contador-mais unico" onclick="adicionarAoCarrinho(this)" 
+                    data-nome="${nomeProduto}">
+                    + Adicionar
+                </button>
+            `;
+        }
     }
-];
+};
 
-produtos.forEach(produto => {
-    const div = document.createElement('div');
-    div.classList.add('produto');
-    div.innerHTML = `
-        <img src="assets/${produto.imagem}" alt="${produto.nome}">
-        <h3>${produto.nome}</h3>
-        <p>${produto.descricao}</p>
-        <p><strong>${produto.preco}</strong></p>
-        <div class="contador" id="contador-${produto.nome}">
-            <button class="contador-mais unico" onclick="adicionarAoCarrinho(produtos.find(p => p.nome === '${produto.nome}'))">+ Adicionar</button>
-        </div>
-    `;
-    cardapio.appendChild(div);
+// Carrega produtos do JSON
+fetch('produtos.json')
+    .then(response => response.json())
+    .then(data => {
+        produtos = data;
+        produtos.forEach(produto => {
+            const div = document.createElement('div');
+            div.classList.add('produto');
+            div.innerHTML = `
+                <img src="assets/${produto.imagem}" alt="${produto.nome}">
+                <h3>${produto.nome}</h3>
+                <p>${produto.descricao}</p>
+                <p><strong>${produto.preco}</strong></p>
+                <div class="contador" id="contador-${produto.nome}">
+                    <button class="contador-mais unico" 
+                        onclick="adicionarAoCarrinho(this)" 
+                        data-nome="${produto.nome}">
+                        + Adicionar
+                    </button>
+                </div>
+            `;
+            cardapio.appendChild(div);
+        });
+    })
+    .catch(error => console.error('Erro ao carregar produtos:', error));
+
+// Botão do WhatsApp com balão
+const whatsappBotao = document.createElement('a');
+whatsappBotao.classList.add('botao-whatsapp-flutuante');
+whatsappBotao.href = "#";
+whatsappBotao.target = "_blank";
+whatsappBotao.innerHTML = `<img src="assets/whatsapp-icon.png" alt="WhatsApp">`;
+document.body.appendChild(whatsappBotao);
+
+document.addEventListener("DOMContentLoaded", () => {
+    const botaoWhatsapp = document.querySelector('.botao-whatsapp-flutuante');
+    const balaoMensagem = document.createElement('div');
+    balaoMensagem.classList.add('balao-mensagem');
+    balaoMensagem.textContent = 'Peça pelo WhatsApp!';
+    botaoWhatsapp.appendChild(balaoMensagem);
+
+    function exibirBalaoAleatoriamente() {
+        if (Math.random() > 0.7) {
+            balaoMensagem.classList.add('mostrar');
+            setTimeout(() => {
+                balaoMensagem.classList.remove('mostrar');
+            }, 4000);
+        }
+    }
+
+    setInterval(exibirBalaoAleatoriamente, 15000);
 });
 
 document.addEventListener("DOMContentLoaded", atualizarCarrinho);
