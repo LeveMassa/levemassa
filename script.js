@@ -186,12 +186,42 @@ fetch('produtos.json')
     .catch(error => console.error('Erro ao carregar produtos:', error));
 
 // Botão do WhatsApp com balão
+// Função para gerar a mensagem do WhatsApp
+const gerarMensagemWhatsApp = () => {
+    let mensagem = "Olá, gostaria de fazer um pedido:\n";
+    let total = 0;
+
+    if (carrinho.length === 0) {
+        mensagem += "Meu carrinho está vazio.";
+    } else {
+        carrinho.forEach(item => {
+            mensagem += `${item.quantidade}x ${item.nome} - R$${(item.preco * item.quantidade).toFixed(2)}\n`;
+            total += item.preco * item.quantidade;
+        });
+        mensagem += `\nTotal: R$${total.toFixed(2)}`;
+    }
+
+    return encodeURIComponent(mensagem);
+};
+
+// Criando o botão do WhatsApp
 const whatsappBotao = document.createElement('a');
 whatsappBotao.classList.add('botao-whatsapp-flutuante');
-whatsappBotao.href = "#";
 whatsappBotao.target = "_blank";
 whatsappBotao.innerHTML = `<img src="assets/whatsapp-icon.png" alt="WhatsApp">`;
 document.body.appendChild(whatsappBotao);
+
+// Atualiza o link do WhatsApp sempre que o carrinho mudar
+const atualizarBotaoWhatsApp = () => {
+    const numeroWhatsApp = "5527995263903";
+    const mensagem = gerarMensagemWhatsApp();
+    whatsappBotao.href = `https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
+};
+
+// Garante que o link do WhatsApp seja atualizado sempre que o carrinho for modificado
+document.addEventListener("DOMContentLoaded", atualizarBotaoWhatsApp);
+whatsappBotao.addEventListener("click", atualizarBotaoWhatsApp);
+
 
 document.addEventListener("DOMContentLoaded", () => {
     const botaoWhatsapp = document.querySelector('.botao-whatsapp-flutuante');
