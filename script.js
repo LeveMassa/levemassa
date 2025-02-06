@@ -195,18 +195,21 @@ const gerarMensagemWhatsApp = () => {
         mensagem += "Meu carrinho está vazio.";
     } else {
         carrinho.forEach(item => {
-            // Converte o preço para número para evitar NaN
-            let precoUnitario = parseFloat(item.preco) || 0;
+            // Remove "R$ " e substitui "," por "."
+            let precoLimpo = String(item.preco).replace("R$", "").trim().replace(",", ".");
+            let precoUnitario = parseFloat(precoLimpo) || 0; // Converte para número
             let precoTotalItem = precoUnitario * item.quantidade;
 
             mensagem += `${item.quantidade}x ${item.nome} - R$${precoTotalItem.toFixed(2)}\n`;
             total += precoTotalItem;
         });
+
         mensagem += `\nTotal: R$${total.toFixed(2)}`;
     }
 
     return encodeURIComponent(mensagem);
 };
+
 
 // Criando o botão do WhatsApp
 const whatsappBotao = document.createElement('a');
