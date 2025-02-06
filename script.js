@@ -195,8 +195,12 @@ const gerarMensagemWhatsApp = () => {
         mensagem += "Meu carrinho está vazio.";
     } else {
         carrinho.forEach(item => {
-            mensagem += `${item.quantidade}x ${item.nome} - R$${(item.preco * item.quantidade).toFixed(2)}\n`;
-            total += item.preco * item.quantidade;
+            // Converte o preço para número para evitar NaN
+            let precoUnitario = parseFloat(item.preco) || 0;
+            let precoTotalItem = precoUnitario * item.quantidade;
+
+            mensagem += `${item.quantidade}x ${item.nome} - R$${precoTotalItem.toFixed(2)}\n`;
+            total += precoTotalItem;
         });
         mensagem += `\nTotal: R$${total.toFixed(2)}`;
     }
