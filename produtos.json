@@ -1,5 +1,11 @@
 [
     {
+        "imagem": "lasanha.png",
+        "nome": "Lasanha à Bolonhesa Sem Glúten (500g)",
+        "descricao": "Lasanha à Bolonhesa. Molho pomodoro artesanal, massa sem glúten, carne moída temperadinha e queijo.",
+        "preco": "R$ 35,00"
+    },
+    {
         "imagem": "nhoque.png",
         "nome": "Nhoque à Bolonhesa Sem Glúten (500g)",
         "descricao": "Massa de arroz e batata com provolone e gorgonzola, molho artesanal e temperos naturais.",
