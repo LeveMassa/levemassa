@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adicionar Produto</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="addprod">
+    <div class="container">
+        <div id="password-section">
+            <h2>Autenticação</h2>
+            <input type="password" id="password" placeholder="Digite a senha">
+            <button onclick="checkPassword()">Entrar</button>
+        </div>
+
+        <div id="form-section" class="hidden">
+            <h2>Adicionar Produto</h2>
+            <input type="text" id="nome" placeholder="Nome do Produto">
+            <input type="text" id="descricao" placeholder="Descrição">
+            <input type="text" id="preco" placeholder="Preço (ex: R$ 35,00)">
+            <input type="file" id="imagem">
+            <button onclick="adicionarProduto()">Adicionar Produto</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
