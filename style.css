@@ -159,6 +159,7 @@ header img {
     font-weight: bold;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+    cursor: pointer;
     z-index: 9999;
 }
 
@@ -361,6 +362,130 @@ header img {
     font-weight: bold;
     box-shadow: 0 0 5px rgba(0,0,0,0.5);
 }
+
+.filtros-container button {
+    background: #2d6a4f;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+    font-weight: bold;
+}
+
+.filtros-container button:hover {
+    background: #1b4931;
+    transform: scale(1.05);
+}
+
+.filtros-container button.ativo {
+    background: #1b4931;
+    color: #fff;
+    transform: scale(1.1);
+}
+
+
+/* Estilos para a página de Adicionar Produto (addprod) */
+body.addprod {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.addprod .container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+}
+
+.addprod h2 {
+    text-align: center;
+    color: #333;
+}
+
+.addprod input[type="text"],
+.addprod input[type="file"],
+.addprod input[type="password"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.addprod button {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.addprod button:hover {
+    background-color: #218838;
+}
+
+.addprod .hidden {
+    display: none;
+}
+
+.botao-pedir {
+    width: 100%;
+    padding: 10px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.botao-pedir:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.botao-pedir:not(:disabled):hover {
+    background-color: #1ebe5d;
+    cursor: pointer;
+}
+
+
+/* Estiliza a scrollbar para navegadores WebKit (Chrome, Edge, Safari) */
+::-webkit-scrollbar {
+    width: 6px;       /* Largura da scrollbar vertical */
+    height: 6px;      /* Altura da scrollbar horizontal */
+}
+
+/* Cor de fundo da área da scrollbar */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;  
+    border-radius: 10px;  /* Bordas arredondadas para o trilho */
+}
+
+/* Cor do 'thumb' (a parte que você arrasta) */
+::-webkit-scrollbar-thumb {
+    background-color: #888; 
+    border-radius: 10px;    /* Bordas arredondadas para o thumb */
+    border: 2px solid transparent;  /* Espaço entre o thumb e o trilho */
+    background-clip: content-box;   /* Faz o espaço do border ficar visível */
+}
+
+/* Efeito hover quando o mouse passa sobre a scrollbar */
+::-webkit-scrollbar-thumb:hover {
+    background-color: #555;
+}
+
 
 /* Responsive */
 @media (max-width: 768px) {
