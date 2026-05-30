@@ -14,20 +14,32 @@ let fotoBlob      = null;   // blob da imagem cortada pronta pra upload
 // ============================================================
 //  LOGIN
 // ============================================================
-function fazerLogin() {
+async function fazerLogin() {
   const senha = document.getElementById('senha-input').value.trim();
   const erro  = document.getElementById('login-erro');
 
-  if (senha === ADMIN_SENHA) {
-    sessionStorage.setItem('lm_admin', '1');
-    document.getElementById('tela-login').classList.add('hidden');
-    document.getElementById('painel').classList.remove('hidden');
-    carregarProdutos();
-  } else {
-    erro.textContent = 'Senha incorreta.';
-    document.getElementById('senha-input').value = '';
-    document.getElementById('senha-input').focus();
+  erro.textContent = '';
+
+  try {
+    const { data, error } = await db.rpc('check_admin', { pwd: senha });
+
+    if (error) throw error;
+
+    if (data === true) {
+      sessionStorage.setItem('lm_admin', '1');
+      document.getElementById('tela-login').classList.add('hidden');
+      document.getElementById('painel').classList.remove('hidden');
+      carregarProdutos();
+    } else {
+      erro.textContent = 'Senha incorreta.';
+    }
+
+  } catch (err) {
+    erro.textContent = 'Erro no login.';
   }
+
+  document.getElementById('senha-input').value = '';
+  document.getElementById('senha-input').focus();
 }
 
 function sair() {
