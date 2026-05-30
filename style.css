@@ -447,3 +447,28 @@ a   { color: inherit; text-decoration: none; }
   text-align: center; padding: 48px 20px; color: #a05030; font-size: .95rem;
   background: #fdf0e8; border-radius: 12px; border: 1.5px solid #f0d0b8;
 }
+
+/* ---- FILTRO DE CATEGORIA ---- */
+.filtro-bar {
+  background: var(--surface);
+  border-bottom: 1.5px solid var(--border);
+  position: sticky; top: 76px; z-index: 90;
+  box-shadow: 0 2px 8px rgba(90,70,50,.06);
+}
+.filtro-inner {
+  max-width: 920px; margin: 0 auto;
+  padding: 12px 20px;
+  display: flex; gap: 8px; flex-wrap: wrap;
+}
+.filtro-tab {
+  padding: 8px 20px; border-radius: 999px;
+  font-family: 'Nunito', sans-serif; font-size: .88rem; font-weight: 800;
+  border: 1.5px solid var(--border); background: var(--bege-bg);
+  color: var(--navy-lt); cursor: pointer; transition: all .2s;
+  white-space: nowrap;
+}
+.filtro-tab:hover  { background: var(--bege-md); color: var(--navy); }
+.filtro-tab.active {
+  background: var(--navy); color: #fff;
+  border-color: var(--navy);
+}

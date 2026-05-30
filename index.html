@@ -32,16 +32,19 @@
 
   <section class="hero-mini">
     <div class="hero-mini-inner">
-      <div class="badges">
-        <span class="badge badge-gluten">🌾 Sem Glúten</span>
-        <span class="badge">🤲 Artesanal</span>
-        <span class="badge">❄️ Congelado</span>
-        <span class="badge">⚡ Entrega em 24h</span>
-      </div>
       <h1>Escolha seus sabores</h1>
-      <p class="hero-sub">Vendemos em <strong>kits de 5 unidades</strong>. Adicione quantos quiser — pode misturar sabores!</p>
+      <p class="hero-sub">Vendemos em <strong>kits de 5 unidades</strong>. Pode misturar sabores!</p>
     </div>
   </section>
+
+  <div class="filtro-bar">
+    <div class="filtro-inner">
+      <button class="filtro-tab active" onclick="filtrarCategoria('todas', this)">🍽️ Todos</button>
+      <button class="filtro-tab" onclick="filtrarCategoria('salgadas', this)">🍕 Salgadas</button>
+      <button class="filtro-tab" onclick="filtrarCategoria('doces', this)">🍓 Doces</button>
+      <button class="filtro-tab" onclick="filtrarCategoria('nhoques', this)">🥟 Nhoques</button>
+    </div>
+  </div>
 
   <main class="main-content">
     <ul class="produto-lista" id="produto-lista"></ul>

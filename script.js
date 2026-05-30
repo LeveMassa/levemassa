@@ -70,6 +70,7 @@ function renderizarLista() {
 
     const header = document.createElement('li');
     header.className = 'categoria-header';
+    header.dataset.categoria = catId;
     header.innerHTML = `<span class="cat-icone">${cat.icone}</span> ${cat.titulo}`;
     lista.appendChild(header);
 
@@ -81,6 +82,7 @@ function renderizarLista() {
       const li = document.createElement('li');
       li.className = 'produto-item';
       li.id = `item-${i}`;
+      li.dataset.categoria = p.categoria;
       li.innerHTML = `
         <img class="produto-img" src="${fotoSrc}" alt="${p.nome}" loading="lazy"
              onerror="this.src='assets/logo.png';this.style.objectFit='contain';this.style.padding='12px';this.style.background='#f0e9de'">
@@ -173,3 +175,33 @@ function finalizarPedido() {
 }
 
 init();
+
+// ============================================================
+//  FILTRO DE CATEGORIA (página pública)
+// ============================================================
+let categoriaAtiva = 'todas';
+
+function filtrarCategoria(cat, btn) {
+  categoriaAtiva = cat;
+  document.querySelectorAll('.filtro-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+
+  const itens = document.querySelectorAll('.produto-item');
+  const headers = document.querySelectorAll('.categoria-header');
+
+  itens.forEach(item => {
+    if (cat === 'todas' || item.dataset.categoria === cat) {
+      item.style.display = 'flex';
+    } else {
+      item.style.display = 'none';
+    }
+  });
+
+  headers.forEach(h => {
+    if (cat === 'todas' || h.dataset.categoria === cat) {
+      h.style.display = 'flex';
+    } else {
+      h.style.display = 'none';
+    }
+  });
+}
