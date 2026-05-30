@@ -273,16 +273,7 @@ a{color:inherit;text-decoration:none}
 /* ============================================================
    CART BAR
    ============================================================ */
-.cart-bar{
-  position:fixed;bottom:0;left:0;right:0;z-index:200;
-  background:rgba(28,43,56,.97);
-  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-  padding:14px 28px;
-  transform:translateY(110%);
-  transition:transform .4s cubic-bezier(.34,1.2,.64,1);
-  border-top:1px solid rgba(255,255,255,.05);
-}
-.cart-bar.visible{transform:translateY(0)}
+.cart-bar{ display:none } /* removida — desktop usa gaveta, mobile usa FABs */
 .cart-bar-inner{
   max-width:980px;margin:0 auto;
   display:flex;align-items:center;justify-content:space-between;gap:20px;
@@ -505,7 +496,6 @@ a{color:inherit;text-decoration:none}
   background:var(--terra);
   color:#fff;
 
-  display:none;
 
   align-items:center;
   justify-content:center;
@@ -586,6 +576,7 @@ a{color:inherit;text-decoration:none}
 
 .gaveta.open{
   transform:translateY(0);
+  top:10; /* para evitar gap no topo quando conteúdo é curto */
 }
 
 .gaveta-handle{
@@ -676,6 +667,163 @@ a{color:inherit;text-decoration:none}
 }
 .gaveta-pedir img{width:18px;height:18px}
 .gaveta-pedir:hover{background:#1aab53}
+
+
+/* ── Gaveta header: agrupamento direita ── */
+.gaveta-header-acoes {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.gaveta-limpar {
+  background: transparent;
+  border: none;
+  color: var(--txt-3);
+  font-family: 'Nunito', sans-serif;
+  font-size: .75rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px 10px;
+  border-radius: 6px;
+  transition: color .2s, background .2s;
+}
+.gaveta-limpar:hover {
+  color: #c0392b;
+  background: rgba(192,57,43,.08);
+}
+.gaveta-limpar.hidden { display: none; }
+
+/* ── FAB carrinho: aparece só com itens ── */
+.fab-cart.has-items { display: flex; }
+
+/* ── fab-wrap some quando gaveta abre ── */
+.fab-wrap.hidden {
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+}
+
+/* ── Gaveta: botão continuar escolhendo ── */
+.gaveta-continuar {
+  width: 100%;
+  padding: 11px;
+  margin-top: 8px;
+  background: transparent;
+  color: var(--txt-2);
+  border: 1.5px solid var(--border);
+  border-radius: 999px;
+  font-family: 'Nunito', sans-serif;
+  font-size: .82rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .2s;
+}
+.gaveta-continuar:hover { background: var(--bege-md); }
+
+/* ── Desconto na gaveta ── */
+.gaveta-item-desconto { font-size:.68rem; font-weight:700; color:var(--verde); margin-top:3px; }
+.gaveta-item-hint     { font-size:.68rem; color:var(--txt-3); margin-top:3px; }
+.gaveta-item-economia { font-size:.7rem; color:var(--verde); font-weight:700; margin-left:4px; }
+
+/* ── nav-sobre full/short ── */
+.nav-sobre-full { display: inline; }
+.nav-sobre-short { display: none; }
+
+/* produto-kit-info */
+.produto-kit-info {
+  margin-top: 4px;
+  font-size: .68rem;
+  color: var(--verde);
+  font-weight: 600;
+}
+.produto-acao-preco-wrap { text-align: center; }
+.produto-acao-ctrl { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+
+
+/* ============================================================
+   HERO — ilustrações flutuantes + pills
+   ============================================================ */
+
+/* Container das ilustrações */
+.hero-floats {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Cada elemento flutuante */
+.hf {
+  position: absolute;
+  animation: hfFloat linear infinite;
+  will-change: transform;
+}
+
+/* Posições, tamanhos e timings individuais */
+.hf-1 { width:52px; top:8%;  right:8%;  animation-duration:7s;  animation-delay:0s;    transform-origin:center; }
+.hf-2 { width:36px; top:55%; right:18%; animation-duration:9s;  animation-delay:-3s;   transform-origin:center; }
+.hf-3 { width:48px; top:20%; right:28%; animation-duration:8s;  animation-delay:-1.5s; transform-origin:center; }
+.hf-4 { width:20px; top:12%; right:42%; animation-duration:6s;  animation-delay:-2s;   transform-origin:center; }
+.hf-5 { width:16px; top:65%; right:38%; animation-duration:10s; animation-delay:-4s;   transform-origin:center; }
+.hf-6 { width:30px; top:75%; right:12%; animation-duration:8.5s;animation-delay:-1s;   transform-origin:center; }
+.hf-7 { width:14px; top:35%; right:52%; animation-duration:7.5s;animation-delay:-5s;   transform-origin:center; }
+.hf-8 { width:14px; top:45%; right:6%;  animation-duration:9.5s;animation-delay:-2.5s; transform-origin:center; }
+
+@keyframes hfFloat {
+  0%   { transform: translateY(0px)   rotate(0deg); }
+  25%  { transform: translateY(-8px)  rotate(3deg); }
+  50%  { transform: translateY(-14px) rotate(-2deg); }
+  75%  { transform: translateY(-6px)  rotate(4deg); }
+  100% { transform: translateY(0px)   rotate(0deg); }
+}
+
+/* Reduz movimento em quem prefere */
+@media (prefers-reduced-motion: reduce) {
+  .hf { animation: none; }
+}
+
+/* Pills do hero */
+.hero-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 18px;
+}
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(28,43,56,.07);
+  border: 1px solid rgba(28,43,56,.12);
+  border-radius: 999px;
+  padding: 5px 14px;
+  font-size: .72rem;
+  font-weight: 600;
+  color: var(--txt-2);
+  letter-spacing: .02em;
+}
+.hero-pill a {
+  color: var(--terra);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.hero-pill-verde {
+  background: rgba(58,122,63,.10);
+  border-color: rgba(58,122,63,.22);
+  color: var(--verde);
+}
+
+/* Mobile: ilustrações menores e menos elementos */
+@media (max-width: 700px) {
+  .hf-1 { width:38px; right:4%;  }
+  .hf-2 { width:26px; right:12%; }
+  .hf-3 { width:34px; right:20%; }
+  .hf-4, .hf-7, .hf-8 { display: none; } /* menos poluição no mobile */
+  .hf-5 { width:13px; }
+  .hf-6 { width:22px; }
+  .hero-pills { gap: 6px; }
+  .hero-pill  { font-size: .68rem; padding: 4px 11px; }
+}
 
 @media(max-width:700px){
   /* Header */

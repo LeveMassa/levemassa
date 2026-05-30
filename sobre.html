@@ -15,10 +15,8 @@
     <div class="topbar-inner">
       <a href="index.html" class="topbar-brand">
         <img src="assets/logo.png" alt="Leve Massa">
-       
       </a>
       <nav class="topbar-nav">
-
         <a href="index.html" class="btn-cardapio-nav">Ver Cardápio</a>
       </nav>
     </div>
@@ -35,8 +33,6 @@
           receitas artesanais para quem busca segurança alimentar, praticidade e sabor em cada refeição.</p>
       </div>
     </section>
-
-    
 
     <!-- GLÚTEN & SEGURANÇA -->
     <section class="info-section" id="gluten">
@@ -55,18 +51,15 @@
             <strong>Doença Celíaca</strong>
             <p>Produção dedicada e processos voltados à prevenção de contaminação cruzada.</p>
           </div>
-
           <div class="info-destaque-item">
             <strong>Sensibilidade ao Glúten</strong>
             <p>Uma alternativa para quem busca evitar desconfortos associados ao consumo de glúten.</p>
           </div>
-
           <div class="info-destaque-item">
             <strong>Escolha Alimentar</strong>
             <p>Uma opção artesanal para consumidores que preferem produtos sem glúten em sua rotina.</p>
           </div>
         </div>
-      </div>
       </div>
     </section>
 
@@ -174,8 +167,7 @@
           <div class="cuidado">
             <div class="cuidado-ico">🌾</div>
             <h3>Massa de Arroz</h3>
-            <p>Farinha de arroz naturalmente livre de glúten, com textura leve e sabor neutro que valoriza cada recheio.
-            </p>
+            <p>Farinha de arroz naturalmente livre de glúten, com textura leve e sabor neutro que valoriza cada recheio.</p>
           </div>
           <div class="cuidado">
             <div class="cuidado-ico">🍅</div>
@@ -224,33 +216,82 @@
       </div>
     </section>
 
-    <!-- ENTREGA -->
-    <section class="info-section info-alt">
+    <!-- ENTREGA — adicionado conforme solicitado -->
+    <section class="info-section info-alt" id="entrega">
       <div class="info-section-inner">
         <span class="pill">Entrega</span>
-        <h2>Informações <em>importantes</em></h2>
+        <h2>Como funciona <em>a entrega</em></h2>
+
+        <!-- Cards rápidos -->
         <div class="entrega-cards">
-          <div class="entrega-card"><span>⚡</span>
-            <div><strong>Entrega em até 24 horas</strong>
-              <p>Após confirmação do pedido e pagamento</p>
+          <div class="entrega-card">
+            <span>⚡</span>
+            <div><strong>Até 24h após confirmação</strong>
+              <p>Assim que o pagamento é confirmado, preparamos e despachamos seu pedido</p>
             </div>
           </div>
-          <div class="entrega-card"><span>❄️</span>
-            <div><strong>Produtos congelados</strong>
-              <p>Embalados e prontos para guardar no freezer</p>
+          <div class="entrega-card">
+            <span>❄️</span>
+            <div><strong>Entregue congelado</strong>
+              <p>Produtos embalados e prontos para ir direto ao freezer</p>
             </div>
           </div>
-          <div class="entrega-card"><span>💬</span>
-            <div><strong>Atendimento pelo WhatsApp</strong>
-              <p>Tiramos dúvidas antes, durante e depois do pedido</p>
+          <div class="entrega-card">
+            <span>📍</span>
+            <div><strong>Vila Velha e Vitória</strong>
+              <p>Atendemos toda a Grande Vitória — ES</p>
             </div>
           </div>
-          <div class="entrega-card"><span>📦</span>
-            <div><strong>Kits de 5 unidades</strong>
-              <p>Vendemos em múltiplos de 5 — pode misturar sabores!</p>
+          <div class="entrega-card">
+            <span>💬</span>
+            <div><strong>Combinado pelo WhatsApp</strong>
+              <p>Horário e logística são acertados diretamente com você</p>
             </div>
           </div>
         </div>
+
+        <!-- Frete variável -->
+        <div class="entrega-frete">
+          <div class="entrega-frete-header">
+            <span class="entrega-frete-titulo">Sobre o valor do frete</span>
+            <span class="entrega-frete-tag">Calculado no momento do pedido</span>
+          </div>
+          <p>Utilizamos serviços de entrega por aplicativo — Uber Flash, iFood Entrega e similares. O valor do frete <strong>não é fixo</strong>: varia conforme a distância, horário e disponibilidade de entregadores no momento.</p>
+          <div class="entrega-frete-grid">
+            <div class="entrega-frete-item">
+              <span class="entrega-frete-icon">🗺️</span>
+              <div>
+                <strong>Distância</strong>
+                <p>Quanto mais perto, menor o frete. Atendemos toda Vila Velha e Vitória.</p>
+              </div>
+            </div>
+            <div class="entrega-frete-item">
+              <span class="entrega-frete-icon">🕐</span>
+              <div>
+                <strong>Horário</strong>
+                <p>Horários de pico podem elevar o valor. Combinamos o melhor momento com você.</p>
+              </div>
+            </div>
+            <div class="entrega-frete-item">
+              <span class="entrega-frete-icon">📲</span>
+              <div>
+                <strong>Transparência total</strong>
+                <p>Antes de despachar, confirmamos o valor do frete com você pelo WhatsApp.</p>
+              </div>
+            </div>
+            <div class="entrega-frete-item">
+              <span class="entrega-frete-icon">✅</span>
+              <div>
+                <strong>Sem surpresas</strong>
+                <p>Nada sai sem sua aprovação. Você decide se quer prosseguir com a entrega.</p>
+              </div>
+            </div>
+          </div>
+          <div class="entrega-frete-nota">
+            💡 Dica: pedidos pela manhã em dias úteis costumam ter fretes mais acessíveis.
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -276,7 +317,6 @@
       document.getElementById('topbar').classList.toggle('scrolled', window.scrollY > 8);
     }, { passive: true });
   </script>
-  <!-- Contador dinâmico de sabores do Supabase -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="config.js"></script>
   <script>

@@ -152,3 +152,191 @@
   .retro-grid { grid-template-columns: 1fr; }
   .autismo-grid { grid-template-columns: 1fr; }
 }
+
+/* ── Bloco de frete variável ── */
+.entrega-frete {
+  margin-top: 28px;
+  background: var(--bege);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+}
+.entrega-frete-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 16px 22px;
+  background: var(--navy);
+}
+.entrega-frete-titulo {
+  font-size: .9rem;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: -.01em;
+}
+.entrega-frete-tag {
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.45);
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 999px;
+  padding: 3px 12px;
+}
+.entrega-frete > p {
+  padding: 18px 22px 4px;
+  font-size: .88rem !important;
+  color: var(--txt-2);
+  line-height: 1.7;
+  margin: 0 !important;
+}
+.entrega-frete-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+  padding: 8px 14px 14px;
+}
+.entrega-frete-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 8px;
+  border-bottom: 1px solid var(--border);
+}
+.entrega-frete-item:nth-child(3),
+.entrega-frete-item:nth-child(4) {
+  border-bottom: none;
+}
+.entrega-frete-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.entrega-frete-item strong {
+  display: block;
+  font-size: .82rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 3px;
+}
+.entrega-frete-item p {
+  font-size: .76rem !important;
+  color: var(--txt-2);
+  line-height: 1.55;
+  margin: 0 !important;
+}
+.entrega-frete-nota {
+  margin: 0 22px 18px;
+  padding: 10px 16px;
+  background: rgba(58,122,63,.07);
+  border: 1px solid rgba(58,122,63,.18);
+  border-radius: 8px;
+  font-size: .76rem;
+  color: var(--verde);
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* Fix pill da entrega no index — mais clicável */
+.hero-pill-link {
+  position: relative;
+}
+
+@media (max-width: 700px) {
+  .entrega-frete-grid { grid-template-columns: 1fr; }
+  .entrega-frete-item { border-bottom: 1px solid var(--border) !important; }
+  .entrega-frete-item:last-child { border-bottom: none !important; }
+  .entrega-frete-header { flex-direction: column; align-items: flex-start; }
+}
+
+/* ── Seção de entrega com frete variável ── */
+.entrega-frete {
+  margin-top: 28px;
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  overflow: hidden;
+}
+.entrega-frete-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 16px 22px;
+  background: var(--navy);
+}
+.entrega-frete-titulo {
+  font-size: .9rem;
+  font-weight: 700;
+  color: #fff;
+}
+.entrega-frete-tag {
+  font-size: .68rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,.45);
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 999px;
+  padding: 3px 12px;
+}
+.entrega-frete > p {
+  padding: 18px 22px 4px;
+  font-size: .88rem !important;
+  color: var(--txt-2);
+  line-height: 1.7;
+  margin: 0 !important;
+  background: var(--bege);
+}
+.entrega-frete-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  background: var(--bege);
+  padding: 8px 14px 14px;
+}
+.entrega-frete-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 12px 8px;
+  border-bottom: 1px solid var(--border);
+}
+.entrega-frete-item:nth-child(3),
+.entrega-frete-item:nth-child(4) { border-bottom: none; }
+.entrega-frete-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 1px; }
+.entrega-frete-item strong {
+  display: block;
+  font-size: .82rem;
+  font-weight: 700;
+  color: var(--navy);
+  margin-bottom: 3px;
+}
+.entrega-frete-item p {
+  font-size: .76rem !important;
+  color: var(--txt-2);
+  line-height: 1.55;
+  margin: 0 !important;
+}
+.entrega-frete-nota {
+  margin: 0 22px 18px;
+  padding: 10px 16px;
+  background: rgba(58,122,63,.07);
+  border: 1px solid rgba(58,122,63,.18);
+  border-radius: 8px;
+  font-size: .76rem;
+  color: var(--verde);
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+@media (max-width: 700px) {
+  .entrega-frete-grid { grid-template-columns: 1fr; }
+  .entrega-frete-item { border-bottom: 1px solid var(--border) !important; }
+  .entrega-frete-item:last-child { border-bottom: none !important; }
+  .entrega-frete-header { flex-direction: column; align-items: flex-start; }
+}
