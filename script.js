@@ -197,7 +197,6 @@ function adicionar(i) {
   atualizarCarrinho();
   bumpCount();
   salvarCache();
-  if (eraVazio) abrirGaveta();
 }
 
 function remover(i) {
