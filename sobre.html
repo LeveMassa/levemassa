@@ -1,135 +1,264 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Leve Massa – Sobre & Entregas</title>
+  <title>Leve Massa – Sobre & Informações</title>
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fraunces:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="sobre-extra.css">
 </head>
+
 <body>
 
-  <!-- HEADER -->
-  <header class="topbar">
+  <header class="topbar" id="topbar">
     <div class="topbar-inner">
       <a href="index.html" class="topbar-brand">
         <img src="assets/logo.png" alt="Leve Massa">
-        <div class="brand-text">
-          <span class="brand-name">Leve Massa</span>
-          <span class="brand-tagline">✦ Glúten Free · Artesanal</span>
-        </div>
+       
       </a>
       <nav class="topbar-nav">
-        <a href="sobre.html" class="nav-sobre active">
-          <span class="nav-icon">ℹ️</span>
-          <span>Sobre & Entregas</span>
-        </a>
-        <a href="index.html" class="btn-cardapio-nav">Ver Cardápio →</a>
+
+        <a href="index.html" class="btn-cardapio-nav">Ver Cardápio</a>
       </nav>
     </div>
   </header>
 
   <main class="sobre-page">
 
-    <!-- SOBRE -->
-    <section class="sobre-section">
-      <div class="sobre-text">
+    <!-- HERO DA PÁGINA SOBRE -->
+    <section class="sobre-hero">
+      <div class="sobre-hero-inner">
         <span class="pill">Nossa história</span>
-        <h2>Feito com propósito,<br><em>servido com carinho</em></h2>
-        <p>A Leve Massa nasceu da vontade de oferecer uma alimentação mais consciente sem abrir mão do sabor. Cada receita foi desenvolvida com cuidado, usando massa de arroz e ingredientes selecionados, pensando em quem tem restrições alimentares — ou simplesmente quer comer melhor.</p>
-        <p>Produzimos em pequenos lotes para garantir frescor e qualidade em cada encomenda. Nada de linha industrial.</p>
-      </div>
-      <div class="sobre-stats">
-        <div class="stat-card"><span class="stat-n">100%</span><span class="stat-l">Sem Glúten</span></div>
-        <div class="stat-card"><span class="stat-n">+8</span><span class="stat-l">Sabores</span></div>
-        <div class="stat-card"><span class="stat-n">24h</span><span class="stat-l">Entrega</span></div>
+        <h1>Comida de verdade,<br><em>feita com cuidado</em></h1>
+        <p>A Leve Massa nasceu da ideia de que uma alimentação sem glúten não precisa ser limitada. Desenvolvemos
+          receitas artesanais para quem busca segurança alimentar, praticidade e sabor em cada refeição.</p>
       </div>
     </section>
 
-    <!-- CUIDADOS -->
-    <section class="cuidados-section">
-      <span class="pill">Nossos cuidados</span>
-      <h2>Do ingrediente <em>à sua mesa</em></h2>
-      <div class="cuidados-grid">
-        <div class="cuidado">
-          <div class="cuidado-ico">🌾</div>
-          <h3>Massa de Arroz</h3>
-          <p>Naturalmente livre de glúten, com textura leve que valoriza cada recheio.</p>
+    <!-- STATS DINÂMICOS -->
+    <section class="stats-bar">
+      <div class="stats-bar-inner">
+        <div class="stat-div"></div>
+        <div class="stat-item">
+          <span class="stat-n">Artesanal</span>
+          <span class="stat-l">Produção em pequenos lotes</span>
         </div>
-        <div class="cuidado">
-          <div class="cuidado-ico">🍅</div>
-          <h3>Molhos Artesanais</h3>
-          <p>Preparados na hora, sem conservantes, com tomates e temperos selecionados.</p>
+        
+      </div>
+    </section>
+
+    <!-- GLÚTEN & SEGURANÇA -->
+    <section class="info-section" id="gluten">
+      <div class="info-section-inner">
+        <div class="info-text">
+          <span class="pill">Por que sem glúten?</span>
+          <h2>Segurança alimentar <em>de verdade</em></h2>
+          <p>O glúten é uma proteína encontrada no trigo, centeio e cevada. Em pessoas com doença celíaca, sua ingestão
+            desencadeia uma resposta imunológica que pode causar lesões no intestino delgado, mesmo quando consumido em
+            pequenas quantidades. Pessoas com sensibilidade ao glúten também podem apresentar desconfortos digestivos e
+            outros sintomas relacionados ao consumo.</p>
+          <p>Nossa produção utiliza exclusivamente ingredientes sem glúten e segue procedimentos rigorosos voltados à
+            prevenção de contaminação cruzada. Trabalhamos com equipamentos dedicados e processos cuidadosamente
+            controlados para oferecer produtos adequados a quem necessita de uma dieta isenta de glúten.</p>
+          <div class="info-destaque-item">
+            <strong>Doença Celíaca</strong>
+            <p>Produção dedicada e processos voltados à prevenção de contaminação cruzada.</p>
+          </div>
+
+          <div class="info-destaque-item">
+            <strong>Sensibilidade ao Glúten</strong>
+            <p>Uma alternativa para quem busca evitar desconfortos associados ao consumo de glúten.</p>
+          </div>
+
+          <div class="info-destaque-item">
+            <strong>Escolha Alimentar</strong>
+            <p>Uma opção artesanal para consumidores que preferem produtos sem glúten em sua rotina.</p>
+          </div>
         </div>
-        <div class="cuidado">
-          <div class="cuidado-ico">🧀</div>
-          <h3>Ingredientes Selecionados</h3>
-          <p>Escolhemos cada fornecedor pelo sabor e qualidade, não pelo menor preço.</p>
+      </div>
+      </div>
+    </section>
+
+    <!-- RETROGRADAÇÃO -->
+    <section class="info-section info-alt" id="retrogradacao">
+      <div class="info-section-inner">
+        <span class="pill">Ciência por trás do sabor</span>
+        <h2>O que é a <em>retrogradação</em> do amido?</h2>
+        <div class="retro-grid">
+          <div class="retro-texto">
+            <p>Quando o amido é cozido e depois resfriado lentamente, suas moléculas se reorganizam em uma estrutura
+              cristalina diferente — isso se chama <strong>retrogradação</strong>. O resultado é um amido resistente,
+              que o intestino absorve de forma mais lenta e completa.</p>
+            <p>Nossas massas passam por esse processo de forma intencional: são preparadas, resfriadas e congeladas com
+              precisão para preservar essa propriedade. Isso significa:</p>
+            <ul class="retro-lista">
+              <li>Menor pico glicêmico após o consumo</li>
+              <li>Sensação de saciedade mais prolongada</li>
+              <li>Pode atuar como substrato prebiótico, contribuindo para a saúde da microbiota intestinal</li>
+              <li>Melhor digestibilidade, especialmente para intestinos sensíveis</li>
+            </ul>
+            <p class="retro-obs">Grande parte do amido resistente formado durante o resfriamento e congelamento tende a
+              ser preservada após o reaquecimento adequado do produto.</p>
+          </div>
+          <div class="retro-visual">
+            <div class="retro-etapa">
+              <span class="retro-num">01</span>
+              <div>
+                <strong>Cozimento</strong>
+                <p>Amido gelatiniza, estrutura aberta</p>
+              </div>
+            </div>
+            <div class="retro-seta">↓</div>
+            <div class="retro-etapa">
+              <span class="retro-num">02</span>
+              <div>
+                <strong>Resfriamento lento</strong>
+                <p>Moléculas se reorganizam e cristalizam</p>
+              </div>
+            </div>
+            <div class="retro-seta">↓</div>
+            <div class="retro-etapa">
+              <span class="retro-num">03</span>
+              <div>
+                <strong>Congelamento</strong>
+                <p>Estrutura resistente preservada</p>
+              </div>
+            </div>
+            <div class="retro-seta">↓</div>
+            <div class="retro-etapa retro-etapa-final">
+              <span class="retro-num">04</span>
+              <div>
+                <strong>Você consome</strong>
+                <p>Digestão lenta, saciedade, prebiótico</p>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="cuidado">
-          <div class="cuidado-ico">🤲</div>
-          <h3>Feito à Mão</h3>
-          <p>Pequenos lotes, atenção em cada unidade. Nenhuma é igual à anterior.</p>
+      </div>
+    </section>
+
+    <!-- AUTISMO & GLÚTEN -->
+    <section class="info-section" id="autismo">
+      <div class="info-section-inner">
+        <span class="pill">Alimentação & neurodesenvolvimento</span>
+        <h2>Dieta sem glúten e <em>autismo</em></h2>
+        <p class="intro-p">A relação entre alimentação, microbiota intestinal e neurodesenvolvimento tem sido amplamente
+          estudada nos últimos anos. Embora ainda existam debates científicos sobre o tema, muitas famílias buscam
+          dietas sem glúten como parte de estratégias alimentares individualizadas.</p>
+        <div class="autismo-grid">
+          <div class="autismo-card">
+            <div class="autismo-card-head">Experiências observadas</div>
+            <p>Algumas famílias relatam mudanças positivas em aspectos como atenção, comportamento e bem-estar após a
+              adoção de dietas específicas. Os resultados variam amplamente entre indivíduos e continuam sendo objeto de
+              investigação científica.</p>
+          </div>
+          <div class="autismo-card">
+            <div class="autismo-card-head">Eixo intestino-cérebro</div>
+            <p>O intestino é chamado de "segundo cérebro" pela quantidade de neurônios e neurotransmissores que produz —
+              incluindo cerca de 90% da serotonina do corpo. Uma microbiota intestinal saudável, favorecida pela
+              retirada do glúten, pode influenciar positivamente humor, sono e foco.</p>
+          </div>
+          <div class="autismo-card">
+            <div class="autismo-card-head">Relatos de famílias</div>
+            <p>Muitas famílias reportam redução de hiperatividade, melhora na comunicação, menos episódios de
+              comportamento disruptivo e melhor qualidade de sono após a adoção da dieta sem glúten e caseína. Os
+              benefícios costumam aparecer entre 3 e 6 semanas de adesão consistente.</p>
+          </div>
+          <div class="autismo-card">
+            <div class="autismo-card-head">Nossa posição</div>
+            <p>A Leve Massa não realiza alegações terapêuticas ou médicas. Nosso compromisso é oferecer alimentos saborosos, produzidos com cuidado e adequados para pessoas que optam ou necessitam de uma alimentação sem glúten.</p>
+          </div>
+        </div>
+        <p class="disclaimer">Consulte sempre um médico ou nutricionista antes de fazer mudanças significativas na
+          alimentação. As informações acima têm caráter educativo.</p>
+      </div>
+    </section>
+
+    <!-- NOSSOS CUIDADOS -->
+    <section class="info-section info-alt">
+      <div class="info-section-inner">
+        <span class="pill">Processo</span>
+        <h2>Do ingrediente <em>à sua mesa</em></h2>
+        <div class="cuidados-grid">
+          <div class="cuidado">
+            <div class="cuidado-ico">🌾</div>
+            <h3>Massa de Arroz</h3>
+            <p>Farinha de arroz naturalmente livre de glúten, com textura leve e sabor neutro que valoriza cada recheio.
+            </p>
+          </div>
+          <div class="cuidado">
+            <div class="cuidado-ico">🍅</div>
+            <h3>Molhos Artesanais</h3>
+            <p>Preparados na hora, sem conservantes artificiais, com tomates e temperos selecionados a cada lote.</p>
+          </div>
+          <div class="cuidado">
+            <div class="cuidado-ico">🧀</div>
+            <h3>Ingredientes Selecionados</h3>
+            <p>Cada fornecedor é escolhido pelo sabor e qualidade. Não abrimos mão disso pelo menor preço.</p>
+          </div>
+          <div class="cuidado">
+            <div class="cuidado-ico">🤲</div>
+            <h3>Produção Manual</h3>
+            <p>Pequenos lotes, atenção em cada unidade. A produção artesanal garante consistência e cuidado que a
+              indústria não consegue replicar.</p>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- COMO FUNCIONA -->
-    <section class="como-section">
-      <span class="pill">Como funciona</span>
-      <h2>Pedido <em>simples assim</em></h2>
-      <div class="steps">
-        <div class="step">
-          <div class="step-num">1</div>
-          <h3>Monte seu pedido</h3>
-          <p>Escolha os sabores no cardápio. Cada kit tem 5 unidades — você pode misturar!</p>
-        </div>
-        <div class="step-sep">→</div>
-        <div class="step">
-          <div class="step-num">2</div>
-          <h3>Envie pelo WhatsApp</h3>
-          <p>Clique em "Pedir pelo WhatsApp" — a mensagem já chega preenchida com seu pedido.</p>
-        </div>
-        <div class="step-sep">→</div>
-        <div class="step">
-          <div class="step-num">3</div>
-          <h3>Receba em até 24h</h3>
-          <p>Confirmado o pagamento, entregamos fresquinho e congelado até você.</p>
+    <section class="info-section">
+      <div class="info-section-inner">
+        <span class="pill">Como pedir</span>
+        <h2>Simples <em>assim</em></h2>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">1</div>
+            <h3>Monte seu pedido</h3>
+            <p>Escolha os sabores no cardápio. Cada kit tem 5 unidades — você pode misturar!</p>
+          </div>
+          <div class="step-sep">→</div>
+          <div class="step">
+            <div class="step-num">2</div>
+            <h3>Envie pelo WhatsApp</h3>
+            <p>Clique em "Pedir pelo WhatsApp" — a mensagem já chega preenchida com tudo.</p>
+          </div>
+          <div class="step-sep">→</div>
+          <div class="step">
+            <div class="step-num">3</div>
+            <h3>Receba em até 24h</h3>
+            <p>Após a confirmação do pagamento, seu pedido é preparado e entregue congelado, pronto para armazenamento e consumo.</p>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- ENTREGA -->
-    <section class="entrega-section">
-      <span class="pill">Entrega</span>
-      <h2>Informações <em>importantes</em></h2>
-      <div class="entrega-cards">
-        <div class="entrega-card">
-          <span>⚡</span>
-          <div>
-            <strong>Entrega em até 24 horas</strong>
-            <p>Após confirmação do pedido e do pagamento</p>
+    <section class="info-section info-alt">
+      <div class="info-section-inner">
+        <span class="pill">Entrega</span>
+        <h2>Informações <em>importantes</em></h2>
+        <div class="entrega-cards">
+          <div class="entrega-card"><span>⚡</span>
+            <div><strong>Entrega em até 24 horas</strong>
+              <p>Após confirmação do pedido e pagamento</p>
+            </div>
           </div>
-        </div>
-        <div class="entrega-card">
-          <span>❄️</span>
-          <div>
-            <strong>Produtos congelados</strong>
-            <p>Entregues embalados e prontos para guardar no freezer</p>
+          <div class="entrega-card"><span>❄️</span>
+            <div><strong>Produtos congelados</strong>
+              <p>Embalados e prontos para guardar no freezer</p>
+            </div>
           </div>
-        </div>
-        <div class="entrega-card">
-          <span>💬</span>
-          <div>
-            <strong>Atendimento pelo WhatsApp</strong>
-            <p>Tiramos suas dúvidas antes, durante e depois do pedido</p>
+          <div class="entrega-card"><span>💬</span>
+            <div><strong>Atendimento pelo WhatsApp</strong>
+              <p>Tiramos dúvidas antes, durante e depois do pedido</p>
+            </div>
           </div>
-        </div>
-        <div class="entrega-card">
-          <span>📦</span>
-          <div>
-            <strong>Kits de 5 unidades</strong>
-            <p>Vendemos apenas em múltiplos de 5 — pode misturar sabores!</p>
+          <div class="entrega-card"><span>📦</span>
+            <div><strong>Kits de 5 unidades</strong>
+              <p>Vendemos em múltiplos de 5 — pode misturar sabores!</p>
+            </div>
           </div>
         </div>
       </div>
@@ -137,21 +266,46 @@
 
     <!-- CTA -->
     <section class="cta-section">
-      <h2>Pronto para pedir?</h2>
+      <h2>Pronto para experimentar?</h2>
       <p>Acesse o cardápio e monte seu kit agora mesmo.</p>
       <a href="index.html" class="btn-cta">Ver Cardápio →</a>
     </section>
 
   </main>
 
-  <!-- FOOTER -->
   <footer class="footer">
     <img src="assets/logo.png" alt="Leve Massa">
     <p>Leve Massa © 2025 · Feito com cuidado</p>
     <a href="https://wa.me/5527995263903" target="_blank" class="wa-link">
-      <img src="assets/whatsapp-icon.png" alt=""> (27) 99526-3903
+      <img src="assets/whatsapp-icon.png" alt="WhatsApp"> (27) 99526-3903
     </a>
   </footer>
 
+  <script>
+    window.addEventListener('scroll', () => {
+      document.getElementById('topbar').classList.toggle('scrolled', window.scrollY > 8);
+    }, { passive: true });
+  </script>
+  <!-- Contador dinâmico de sabores do Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script>
+    (async () => {
+      try {
+        const { createClient } = supabase;
+        const db = createClient(SUPABASE_URL, SUPABASE_KEY);
+        const { count } = await db
+          .from('produtos')
+          .select('*', { count: 'exact', head: true })
+          .eq('ativo', true);
+        const el = document.getElementById('stat-sabores');
+        if (el && count != null) el.textContent = count;
+      } catch (e) {
+        const el = document.getElementById('stat-sabores');
+        if (el) el.textContent = '+8';
+      }
+    })();
+  </script>
 </body>
+
 </html>

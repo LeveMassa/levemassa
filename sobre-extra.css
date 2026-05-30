@@ -1,0 +1,154 @@
+/* sobre-extra.css — estilos exclusivos da página sobre */
+
+.sobre-hero {
+  background: var(--bege-md);
+  padding: 56px 28px 52px;
+  border-bottom: 1px solid var(--border);
+}
+.sobre-hero-inner { max-width: 720px; }
+.sobre-hero h1 {
+  font-family: 'Nunito', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 800; color: var(--navy);
+  line-height: 1.1; letter-spacing: -.02em;
+  margin: 12px 0 16px;
+}
+.sobre-hero h1 em { font-style: normal; color: var(--terra); }
+.sobre-hero p { font-size: .95rem; color: var(--txt-2); line-height: 1.75; max-width: 580px; }
+
+/* Stats bar */
+.stats-bar {
+  background: var(--navy);
+  padding: 28px;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.stats-bar-inner {
+  max-width: 840px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-around;
+  flex-wrap: wrap; gap: 20px;
+}
+.stat-item { text-align: center; }
+.stat-item .stat-n {
+  display: block;
+  font-family: 'Nunito', sans-serif;
+  font-size: 2rem; font-weight: 800; color: #e4c56a;
+  line-height: 1; letter-spacing: -.02em;
+}
+.stat-item .stat-l {
+  display: block;
+  font-size: .68rem; font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase;
+  color: rgba(255,255,255,.45); margin-top: 4px;
+}
+.stat-div { width: 1px; height: 36px; background: rgba(255,255,255,.12); }
+
+/* Seções de info */
+.info-section { padding: 56px 28px; border-bottom: 1px solid var(--border); }
+.info-alt { background: var(--surface); }
+.info-section-inner { max-width: 840px; margin: 0 auto; }
+.info-section h2 {
+  font-family: 'Nunito', sans-serif;
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  font-weight: 800; color: var(--navy);
+  line-height: 1.1; letter-spacing: -.02em;
+  margin: 12px 0 20px;
+}
+.info-section h2 em { font-style: normal; color: var(--terra); }
+.info-section p { font-size: .9rem; color: var(--txt-2); line-height: 1.75; margin-bottom: 14px; font-weight: 400; }
+.intro-p { font-size: .95rem; max-width: 640px; }
+
+/* Destaque glúten */
+.info-destaque {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 12px; margin-top: 24px;
+}
+.info-destaque-item {
+  background: var(--bege); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 18px;
+  border-top: 3px solid var(--terra);
+}
+.info-destaque-item strong {
+  display: block; font-size: .82rem; font-weight: 700;
+  color: var(--navy); margin-bottom: 6px;
+  text-transform: uppercase; letter-spacing: .05em;
+}
+.info-destaque-item p { font-size: .78rem; color: var(--txt-2); line-height: 1.55; margin: 0; }
+
+/* Retrogradação */
+.retro-grid {
+  display: grid; grid-template-columns: 1fr 340px;
+  gap: 40px; align-items: start; margin-top: 8px;
+}
+.retro-lista {
+  list-style: none; margin: 14px 0; display: flex; flex-direction: column; gap: 8px;
+}
+.retro-lista li {
+  font-size: .88rem; color: var(--txt-2); line-height: 1.5;
+  padding-left: 18px; position: relative;
+}
+.retro-lista li::before {
+  content: '→'; position: absolute; left: 0;
+  color: var(--terra); font-weight: 700;
+}
+.retro-obs {
+  font-size: .8rem !important; color: var(--txt-3) !important;
+  font-style: italic; border-left: 2px solid var(--bege-dk);
+  padding-left: 14px; margin-top: 16px !important;
+}
+.retro-visual {
+  background: var(--bege); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 24px;
+  display: flex; flex-direction: column; gap: 0;
+}
+.retro-etapa {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+.retro-etapa:last-child { border-bottom: none; }
+.retro-etapa-final { background: var(--terra); margin: -24px; margin-top: 0; padding: 16px 24px; border-radius: 0 0 var(--r) var(--r); }
+.retro-etapa-final .retro-num { color: rgba(255,255,255,.7); }
+.retro-etapa-final strong { color: #fff; }
+.retro-etapa-final p { color: rgba(255,255,255,.75); }
+.retro-num {
+  font-family: 'Nunito', sans-serif;
+  font-size: 1.3rem; font-weight: 800; color: var(--terra);
+  min-width: 32px; line-height: 1;
+}
+.retro-etapa strong { display: block; font-size: .85rem; font-weight: 700; color: var(--navy); margin-bottom: 3px; }
+.retro-etapa p { font-size: .75rem; color: var(--txt-2); margin: 0; line-height: 1.4; }
+.retro-seta { text-align: center; font-size: .9rem; color: var(--bege-dk); padding: 2px 0; }
+
+/* Autismo */
+.autismo-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 12px; margin: 20px 0;
+}
+.autismo-card {
+  background: var(--bege); border: 1px solid var(--border);
+  border-radius: var(--r); padding: 20px 22px;
+}
+.autismo-card-head {
+  font-size: .78rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .07em;
+  color: var(--terra); margin-bottom: 10px;
+}
+.autismo-card p { font-size: .82rem; color: var(--txt-2); line-height: 1.65; margin: 0; }
+.disclaimer {
+  font-size: .75rem !important; color: var(--txt-3) !important;
+  border: 1px solid var(--border); border-radius: var(--r-sm);
+  padding: 12px 16px; margin-top: 20px !important;
+  background: var(--surface);
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .sobre-hero { padding: 32px 16px 36px; }
+  .stats-bar { padding: 20px 16px; }
+  .stat-div { display: none; }
+  .stats-bar-inner { gap: 16px; justify-content: space-between; }
+  .info-section { padding: 36px 16px; }
+  .info-destaque { grid-template-columns: 1fr; }
+  .retro-grid { grid-template-columns: 1fr; }
+  .autismo-grid { grid-template-columns: 1fr; }
+}

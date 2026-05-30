@@ -2,54 +2,69 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Leve Massa – Cardápio</title>
   <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fraunces:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <header class="topbar">
+  <!-- HEADER -->
+  <header class="topbar" id="topbar">
     <div class="topbar-inner">
       <a href="index.html" class="topbar-brand">
-        <img src="assets/logo.png" alt="Leve Massa">
+        <div class="brand-img-wrap">
+          <img src="assets/logo.png" alt="Leve Massa">
+        </div>
         <div class="brand-text">
           <span class="brand-name">Leve Massa</span>
-          <span class="brand-tagline">✦ Glúten Free · Artesanal</span>
+          <span class="brand-tagline">Glúten Free · Artesanal</span>
         </div>
       </a>
       <nav class="topbar-nav">
         <a href="sobre.html" class="nav-sobre">
-          <span class="nav-icon">ℹ️</span>
-          <span>Sobre & Entregas</span>
+          <span class="nav-sobre-full">Sobre & Entregas</span>
+          <span class="nav-sobre-short">Informações</span>
         </a>
-        <button class="cart-btn" id="cart-btn" onclick="scrollToCart()" aria-label="Carrinho">
-          🛒 <span class="cart-count" id="cart-count">0</span>
+        <!-- Carrinho Desktop (Escondido no Mobile via CSS) -->
+        <button class="cart-btn" id="cart-btn" onclick="abrirGaveta()" aria-label="Ver carrinho">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+          <span class="cart-btn-text">Carrinho</span>
+          <span class="cart-divider"></span>
+          <span class="cart-count" id="cart-count">0</span>
         </button>
       </nav>
     </div>
   </header>
 
+  <!-- HERO -->
   <section class="hero-mini">
     <div class="hero-mini-inner">
-      <h1>Escolha seus sabores</h1>
-      <p class="hero-sub">Vendemos em <strong>kits de 5 unidades</strong>. Pode misturar sabores!</p>
+      <p class="hero-eyebrow">Pizzas e massas sem glúten</p>
+      <h1>Escolha seus <em>sabores</em></h1>
+      <div class="hero-divider">
+        <span class="hero-divider-line"></span>
+        <span class="hero-divider-text">Kits de 5 unidades · pode misturar sabores</span>
+      </div>
+      <p class="hero-sub">Adicione quantos kits quiser. Cada kit tem <strong>5 unidades</strong> do mesmo sabor.</p>
     </div>
   </section>
 
+  <!-- FILTRO -->
   <div class="filtro-bar">
     <div class="filtro-inner">
-      <button class="filtro-tab active" onclick="filtrarCategoria('todas', this)">🍽️ Todos</button>
-      <button class="filtro-tab" onclick="filtrarCategoria('salgadas', this)">🍕 Salgadas</button>
-      <button class="filtro-tab" onclick="filtrarCategoria('doces', this)">🍓 Doces</button>
-      <button class="filtro-tab" onclick="filtrarCategoria('nhoques', this)">🥟 Nhoques</button>
+      <button class="filtro-tab active" onclick="filtrarCategoria('todas', this)">Todos</button>
+      <button class="filtro-tab" onclick="filtrarCategoria('salgadas', this)">Pizzas Salgadas</button>
+      <button class="filtro-tab" onclick="filtrarCategoria('doces', this)">Pizzas Doces</button>
+      <button class="filtro-tab" onclick="filtrarCategoria('nhoques', this)">Nhoques</button>
     </div>
-  </div>
+  </div >
 
+  <!-- LISTA -->
   <main class="main-content">
     <ul class="produto-lista" id="produto-lista"></ul>
   </main>
 
+  <!-- CART BAR — Desktop -->
   <div class="cart-bar" id="cart-bar">
     <div class="cart-bar-inner">
       <div class="cart-bar-info">
@@ -57,12 +72,53 @@
         <span class="cart-bar-total" id="cart-bar-total">R$ 0,00</span>
       </div>
       <button class="cart-bar-btn" onclick="finalizarPedido()">
-        <img src="assets/whatsapp-icon.png" alt=""> Pedir pelo WhatsApp
+        <img src="assets/whatsapp-icon.png" alt="">
+        Pedir pelo WhatsApp
       </button>
     </div>
   </div>
 
-  <!-- Supabase SDK -->
+  <!-- FABs — Botões Flutuantes Fixos -->
+  <div class="fab-wrap">
+    <!-- FAB Carrinho: Mobile-only, dinâmico -->
+    <button class="fab-cart" id="fab-cart" onclick="abrirGaveta()" aria-label="Ver carrinho">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
+      <span class="fab-cart-badge" id="fab-cart-badge">0</span>
+    </button>
+    <!-- FAB WhatsApp -->
+    <a class="fab-wa" href="https://wa.me/5527995263903" target="_blank" aria-label="Fale pelo WhatsApp">
+      <img src="assets/whatsapp-icon.png" alt="WhatsApp">
+    </a>
+  </div>
+
+  <!-- GAVETA CARRINHO — Mobile & Desktop Link -->
+  <div class="gaveta-overlay" id="gaveta-overlay" onclick="fecharGaveta()"></div>
+  <div class="gaveta" id="gaveta">
+    <div class="gaveta-handle"></div>
+    <div class="gaveta-header">
+      <span class="gaveta-titulo">Seu carrinho</span>
+      <button class="gaveta-fechar" onclick="fecharGaveta()">✕</button>
+    </div>
+    <div class="gaveta-body" id="gaveta-body">
+      <div class="gaveta-vazio">Nenhum item adicionado ainda.</div>
+    </div>
+    <div class="gaveta-footer">
+      <div class="gaveta-total-row">
+        <span class="gaveta-total-label">Total</span>
+        <span class="gaveta-total-val" id="gaveta-total">R$ 0,00</span>
+      </div>
+      <button class="gaveta-pedir" onclick="finalizarPedido()">
+        <img src="assets/whatsapp-icon.png" alt="">
+        Pedir pelo WhatsApp
+      </button>
+    </div>
+  </div>
+
+  <script>
+    window.addEventListener('scroll', () => {
+      document.getElementById('topbar').classList.toggle('scrolled', window.scrollY > 8);
+    }, {passive:true});
+  </script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="config.js"></script>
   <script src="script.js"></script>

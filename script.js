@@ -84,24 +84,32 @@ function renderizarLista() {
       li.id = `item-${i}`;
       li.dataset.categoria = p.categoria;
       li.innerHTML = `
-        <img class="produto-img" src="${fotoSrc}" alt="${p.nome}" loading="lazy"
-             onerror="this.src='assets/logo.png';this.style.objectFit='contain';this.style.padding='12px';this.style.background='#f0e9de'">
+        <div class="produto-img-wrap">
+          <img class="produto-img" src="${fotoSrc}" alt="${p.nome}" loading="lazy"
+               onerror="this.src='assets/logo.png';this.style.objectFit='contain';this.style.padding='10px';this.style.background='var(--bege-md)'">
+        </div>
         <div class="produto-body">
           <div class="produto-nome">${p.nome}</div>
           <div class="produto-desc">${p.descricao || ''}</div>
           <div class="produto-preco-row">
             <span class="produto-preco">${precoKit}</span>
-            <span class="produto-preco-unit">/ kit com 5 unid.</span>
+            <span class="produto-preco-unit">/ kit · 5 unid.</span>
           </div>
         </div>
         <div class="produto-acao">
-          <button class="btn-add" id="add-${i}" onclick="adicionar(${i})" aria-label="Adicionar">+</button>
-          <div class="controles" id="ctrl-${i}">
-            <button class="btn-menos" onclick="remover(${i})">−</button>
-            <span class="qtd-num" id="qtd-${i}">0</span>
-            <button class="btn-mais" onclick="adicionar(${i})">+</button>
+          <div>
+            <span class="produto-acao-preco">${precoKit}</span>
+            <span class="produto-acao-preco-unit">kit</span>
           </div>
-          <span class="qtd-kits" id="kits-${i}"></span>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
+            <button class="btn-add" id="add-${i}" onclick="adicionar(${i})" aria-label="Adicionar kit">+</button>
+            <div class="controles" id="ctrl-${i}">
+              <button class="btn-menos" onclick="remover(${i})" aria-label="Remover">−</button>
+              <span class="qtd-num" id="qtd-${i}">0</span>
+              <button class="btn-mais" onclick="adicionar(${i})" aria-label="Adicionar">+</button>
+            </div>
+            <span class="qtd-kits" id="kits-${i}"></span>
+          </div>
         </div>
       `;
       lista.appendChild(li);
@@ -112,7 +120,21 @@ function renderizarLista() {
 function fmt(v) { return 'R$ ' + Number(v).toFixed(2).replace('.', ','); }
 
 // ---- ADICIONAR / REMOVER ----
-function adicionar(i) { qtds[i] += MULTIPLO; atualizar(i); atualizarCarrinho(); bumpCount(); }
+function adicionar(i) {
+
+  const carrinhoVazio =
+    qtds.reduce((a,b)=>a+b,0) === 0;
+
+  qtds[i] += MULTIPLO;
+
+  atualizar(i);
+  atualizarCarrinho();
+  bumpCount();
+
+  if(carrinhoVazio){
+    abrirGaveta();
+  }
+}
 function remover(i)   { if (qtds[i] <= 0) return; qtds[i] -= MULTIPLO; atualizar(i); atualizarCarrinho(); }
 
 function atualizar(i) {
@@ -135,11 +157,89 @@ function atualizar(i) {
 function atualizarCarrinho() {
   let tu = 0, tv = 0;
   qtds.forEach((q, i) => { tu += q; tv += q * todosProdutos[i].preco; });
-  document.getElementById('cart-bar-qtd').textContent   = `${tu} unidade${tu!==1?'s':''}`;
-  document.getElementById('cart-bar-total').textContent = fmt(tv);
+
+  // Desktop: cart bar
+  const cartBar = document.getElementById('cart-bar');
+  if (cartBar) {
+    document.getElementById('cart-bar-qtd').textContent   = `${tu} unidade${tu!==1?'s':''}`;
+    document.getElementById('cart-bar-total').textContent = fmt(tv);
+    cartBar.classList.toggle('visible', tu > 0);
+  }
+
+  // Desktop: botão header
   const cc = document.getElementById('cart-count');
-  if (cc) { cc.textContent = tu; }
-  document.getElementById('cart-bar').classList.toggle('visible', tu > 0);
+  const cartBtn = document.getElementById('cart-btn');
+  if (cc) cc.textContent = tu;
+  if (cartBtn) cartBtn.style.background = tu > 0 ? 'var(--terra)' : 'var(--navy)';
+
+  // Mobile: FAB carrinho
+  const fabCart = document.getElementById('fab-cart');
+  const fabBadge = document.getElementById('fab-cart-badge');
+  if (fabCart) {
+    fabCart.style.display = tu > 0 ? 'flex' : 'none';
+    if (fabBadge) fabBadge.textContent = tu;
+  }
+
+  // Gaveta: total e lista
+  const gavTotal = document.getElementById('gaveta-total');
+  if (gavTotal) gavTotal.textContent = fmt(tv);
+  atualizarGaveta();
+}
+
+// ── GAVETA ──────────────────────────────────────────────────
+function abrirGaveta() {
+  document.getElementById('gaveta').classList.add('open');
+  document.getElementById('gaveta-overlay').classList.add('open');
+
+  document.body.style.overflow = 'hidden';
+
+  document.querySelector('.fab-wrap')
+    .classList.add('hidden');
+}
+
+function fecharGaveta() {
+  document.getElementById('gaveta').classList.remove('open');
+  document.getElementById('gaveta-overlay').classList.remove('open');
+
+  document.body.style.overflow = '';
+
+  document.querySelector('.fab-wrap')
+    .classList.remove('hidden');
+}
+
+function atualizarGaveta() {
+  const body = document.getElementById('gaveta-body');
+  if (!body) return;
+
+  const itens = qtds
+    .map((q, i) => ({ q, p: todosProdutos[i], i }))
+    .filter(x => x.q > 0);
+
+  if (!itens.length) {
+    body.innerHTML = '<div class="gaveta-vazio">Nenhum item ainda.<br>Adicione sabores no cardápio!</div>';
+    return;
+  }
+
+  body.innerHTML = itens.map(({ q, p, i }) => {
+    const fotoSrc = p.foto_url || 'assets/logo.png';
+    const sub = fmt(q * p.preco);
+    const kits = q / MULTIPLO;
+    return `
+      <div class="gaveta-item">
+        <img class="gaveta-item-img" src="${fotoSrc}" alt="${p.nome}"
+             onerror="this.src='assets/logo.png';this.style.objectFit='contain';this.style.padding='6px'">
+        <div class="gaveta-item-info">
+          <div class="gaveta-item-nome">${p.nome}</div>
+          <div class="gaveta-item-preco">${sub} · ${kits} kit${kits>1?'s':''}</div>
+        </div>
+        <div class="gaveta-item-ctrl">
+          <button class="gaveta-btn-m" onclick="remover(${i})">−</button>
+          <span class="gaveta-item-qtd">${q}</span>
+          <button class="gaveta-btn-p" onclick="adicionar(${i})">+</button>
+        </div>
+      </div>
+    `;
+  }).join('');
 }
 
 function bumpCount() {
