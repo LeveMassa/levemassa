@@ -6,6 +6,12 @@
         "preco": "R$ 35,00"
     },
     {
+        "imagem": "torta.png",
+        "nome": "Torta de Legumes de Frango com legumes Sem Glúten (500g)",
+        "descricao": "Massa de legumes e Frango com temperos naturais.",
+        "preco": "R$ 35,00"
+    },
+    {
         "imagem": "4-queijos.jpeg",
         "nome": "Pizza 4 Queijos Magnífica Sem Glúten (25cm)",
         "descricao": "Massa de arroz, molho pomodoro, mozzarella, gorgonzola, parmesão e requeijão cremoso.",

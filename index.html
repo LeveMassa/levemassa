@@ -1,23 +1,67 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leve Massa</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leve Massa – Cardápio</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fraunces:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
 </head>
-<body class="index">
-    <header>
-        <img src="assets/logo.png" alt="Leve Massa Logo">
-    </header>
-    
-    <main>
-        <section id="cardapio"></section>
-    </main>
+<body>
 
-    <footer></footer>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="index.html" class="topbar-brand">
+        <img src="assets/logo.png" alt="Leve Massa">
+        <div class="brand-text">
+          <span class="brand-name">Leve Massa</span>
+          <span class="brand-tagline">✦ Glúten Free · Artesanal</span>
+        </div>
+      </a>
+      <nav class="topbar-nav">
+        <a href="sobre.html" class="nav-sobre">
+          <span class="nav-icon">ℹ️</span>
+          <span>Sobre & Entregas</span>
+        </a>
+        <button class="cart-btn" id="cart-btn" onclick="scrollToCart()" aria-label="Carrinho">
+          🛒 <span class="cart-count" id="cart-count">0</span>
+        </button>
+      </nav>
+    </div>
+  </header>
 
-    <script src="script.js" defer></script>
+  <section class="hero-mini">
+    <div class="hero-mini-inner">
+      <div class="badges">
+        <span class="badge badge-gluten">🌾 Sem Glúten</span>
+        <span class="badge">🤲 Artesanal</span>
+        <span class="badge">❄️ Congelado</span>
+        <span class="badge">⚡ Entrega em 24h</span>
+      </div>
+      <h1>Escolha seus sabores</h1>
+      <p class="hero-sub">Vendemos em <strong>kits de 5 unidades</strong>. Adicione quantos quiser — pode misturar sabores!</p>
+    </div>
+  </section>
+
+  <main class="main-content">
+    <ul class="produto-lista" id="produto-lista"></ul>
+  </main>
+
+  <div class="cart-bar" id="cart-bar">
+    <div class="cart-bar-inner">
+      <div class="cart-bar-info">
+        <span class="cart-bar-qtd" id="cart-bar-qtd">0 unidades</span>
+        <span class="cart-bar-total" id="cart-bar-total">R$ 0,00</span>
+      </div>
+      <button class="cart-bar-btn" onclick="finalizarPedido()">
+        <img src="assets/whatsapp-icon.png" alt=""> Pedir pelo WhatsApp
+      </button>
+    </div>
+  </div>
+
+  <!-- Supabase SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

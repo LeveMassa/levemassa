@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leve Massa – Admin</title>
+  <!-- SEGURANÇA: esta página não está linkada em lugar nenhum do site -->
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Fraunces:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- TELA DE LOGIN -->
+  <div id="tela-login" class="login-overlay">
+    <div class="login-box">
+      <img src="../assets/logo.png" alt="Leve Massa" class="login-logo">
+      <h1>Painel Admin</h1>
+      <p>Acesso restrito</p>
+      <div class="login-field">
+        <input type="password" id="senha-input" placeholder="Senha" autocomplete="current-password"
+               onkeydown="if(event.key==='Enter') fazerLogin()">
+      </div>
+      <button class="btn-login" onclick="fazerLogin()">Entrar</button>
+      <p class="login-erro" id="login-erro"></p>
+    </div>
+  </div>
+
+  <!-- PAINEL ADMIN (oculto até login) -->
+  <div id="painel" class="painel hidden">
+
+    <header class="admin-header">
+      <div class="admin-header-inner">
+        <div class="admin-brand">
+          <img src="../assets/logo.png" alt="">
+          <span>Admin · Leve Massa</span>
+        </div>
+        <div class="admin-header-actions">
+          <a href="../index.html" target="_blank" class="btn-ver-site">↗ Ver site</a>
+          <button class="btn-sair" onclick="sair()">Sair</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="admin-main">
+
+      <!-- BOTÃO NOVO PRODUTO -->
+      <div class="admin-toolbar">
+        <h2>Cardápio</h2>
+        <button class="btn-novo" onclick="abrirModal()">+ Novo produto</button>
+      </div>
+
+      <!-- TABS DE CATEGORIA -->
+      <div class="admin-tabs">
+        <button class="tab active" onclick="filtrarCategoria('todas', this)">Todos</button>
+        <button class="tab" onclick="filtrarCategoria('salgadas', this)">🍕 Salgadas</button>
+        <button class="tab" onclick="filtrarCategoria('doces', this)">🍓 Doces</button>
+        <button class="tab" onclick="filtrarCategoria('nhoques', this)">🥟 Nhoques</button>
+      </div>
+
+      <!-- LISTA DE PRODUTOS -->
+      <div id="admin-lista" class="admin-lista"></div>
+
+    </main>
+  </div>
+
+  <!-- MODAL: CRIAR / EDITAR PRODUTO -->
+  <div id="modal-overlay" class="modal-overlay hidden" onclick="fecharModalClick(event)">
+    <div class="modal">
+      <div class="modal-header">
+        <h3 id="modal-titulo">Novo produto</h3>
+        <button class="modal-fechar" onclick="fecharModal()">✕</button>
+      </div>
+
+      <div class="modal-body">
+
+        <!-- FOTO -->
+        <div class="campo-foto">
+          <div class="foto-preview" id="foto-preview" onclick="document.getElementById('foto-input').click()">
+            <img id="foto-preview-img" src="" alt="" style="display:none">
+            <div class="foto-placeholder" id="foto-placeholder">
+              <span>📷</span>
+              <p>Clique para escolher foto</p>
+            </div>
+          </div>
+          <input type="file" id="foto-input" accept="image/*" style="display:none" onchange="carregarFoto(this)">
+          <p class="foto-dica">Clique na imagem para trocar · Será cortada automaticamente em quadrado</p>
+        </div>
+
+        <!-- CANVAS DE CORTE (oculto, só para processamento) -->
+        <canvas id="canvas-corte" style="display:none"></canvas>
+
+        <!-- CAMPOS -->
+        <div class="campo-grupo">
+          <label>Nome do produto *</label>
+          <input type="text" id="campo-nome" placeholder="Ex: Pizza Marguerita">
+        </div>
+        <div class="campo-grupo">
+          <label>Descrição</label>
+          <textarea id="campo-desc" rows="3" placeholder="Ingredientes e detalhes..."></textarea>
+        </div>
+        <div class="campo-linha">
+          <div class="campo-grupo">
+            <label>Preço por unidade (R$) *</label>
+            <input type="number" id="campo-preco" placeholder="0.00" step="0.01" min="0">
+          </div>
+          <div class="campo-grupo">
+            <label>Categoria *</label>
+            <select id="campo-categoria">
+              <option value="salgadas">🍕 Pizza Salgada</option>
+              <option value="doces">🍓 Pizza Doce</option>
+              <option value="nhoques">🥟 Nhoque</option>
+            </select>
+          </div>
+        </div>
+        <div class="campo-linha">
+          <div class="campo-grupo">
+            <label>Ordem (menor = primeiro)</label>
+            <input type="number" id="campo-ordem" placeholder="1" min="0">
+          </div>
+          <div class="campo-grupo campo-ativo">
+            <label>Visível no site?</label>
+            <label class="toggle">
+              <input type="checkbox" id="campo-ativo" checked>
+              <span class="toggle-slider"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-cancelar" onclick="fecharModal()">Cancelar</button>
+        <button class="btn-salvar" id="btn-salvar" onclick="salvarProduto()">Salvar produto</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE CONFIRMAÇÃO DE EXCLUSÃO -->
+  <div id="modal-delete" class="modal-overlay hidden" onclick="fecharDeleteClick(event)">
+    <div class="modal modal-pequeno">
+      <div class="modal-header">
+        <h3>Excluir produto</h3>
+        <button class="modal-fechar" onclick="fecharDelete()">✕</button>
+      </div>
+      <div class="modal-body">
+        <p>Tem certeza que quer excluir <strong id="delete-nome"></strong>?</p>
+        <p class="delete-aviso">Esta ação não pode ser desfeita.</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-cancelar" onclick="fecharDelete()">Cancelar</button>
+        <button class="btn-deletar" id="btn-confirmar-delete" onclick="confirmarDelete()">Excluir</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="../config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
