@@ -1,5 +1,5 @@
 /* sobre-extra.css — estilos exclusivos da página sobre */
-
+:root { color-scheme: light only; }
 .sobre-hero {
   background: var(--bege-md);
   padding: 56px 28px 52px;
