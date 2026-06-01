@@ -223,7 +223,7 @@ a{color:inherit;text-decoration:none}
 }
 .produto-desc{
   font-size:.78rem;font-weight:300;color:var(--txt-2);line-height:1.55;
-  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden;
 }
 .produto-preco-row{display:flex;align-items:baseline;gap:6px;margin-top:4px}
 .produto-preco{
