@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,500&family=DM+Sans:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400&display=swap');
 
 /* ============================================================
    LEVE MASSA v6 — UX-first, design premium
@@ -133,7 +133,7 @@ a{color:inherit;text-decoration:none}
   color:var(--txt-3);margin-bottom:10px;
 }
 .hero-mini h1{
-  font-family:'Cormorant Garamond',serif;
+  font-family:'Nunito',sans-serif;
   font-size:clamp(2.8rem,7vw,4.8rem);
   font-weight:600;color:var(--navy);
   line-height:1;letter-spacing:-.03em;
@@ -217,7 +217,7 @@ a{color:inherit;text-decoration:none}
   justify-content:center;gap:5px;min-width:0;
 }
 .produto-nome{
-  font-family:'Cormorant Garamond',serif;
+  font-family:'Nunito',sans-serif;
   font-size:1.25rem;font-weight:600;color:var(--navy);
   line-height:1.15;letter-spacing:-.01em;
 }
@@ -261,7 +261,7 @@ a{color:inherit;text-decoration:none}
 .btn-menos{background:var(--bege-md);color:var(--txt-2)}
 .btn-menos:hover{background:var(--navy);color:#fff}
 .qtd-num{
-  font-family:'Cormorant Garamond',serif;
+  font-family:'Nunito',sans-serif;
   font-size:1.2rem;font-weight:600;color:var(--navy);
   min-width:20px;text-align:center;line-height:1;
 }
@@ -281,7 +281,7 @@ a{color:inherit;text-decoration:none}
 .cart-bar-info{display:flex;flex-direction:column;gap:1px}
 .cart-bar-qtd{font-size:.65rem;font-weight:400;color:rgba(255,255,255,.35);letter-spacing:.12em;text-transform:uppercase}
 .cart-bar-total{
-  font-family:'Cormorant Garamond',serif;
+  font-family:'Nunito',sans-serif;
   font-size:1.8rem;font-weight:600;color:#e4c56a;letter-spacing:-.02em;line-height:1;
 }
 .cart-bar-btn{
@@ -340,7 +340,7 @@ a{color:inherit;text-decoration:none}
   padding:56px 0 48px;align-items:center;border-bottom:1px solid var(--border);
 }
 .sobre-text h2{
-  font-family:'Cormorant Garamond',serif;
+  font-family:'Nunito',sans-serif;
   font-size:clamp(2rem,4vw,2.8rem);color:var(--navy);
   line-height:1.05;letter-spacing:-.03em;font-weight:600;margin-bottom:18px;
 }
@@ -354,13 +354,13 @@ a{color:inherit;text-decoration:none}
 }
 .stat-card:hover{box-shadow:var(--shadow-s)}
 .stat-n{
-  font-family:'Cormorant Garamond',serif;
+  font-family:'Nunito',sans-serif;
   font-size:2.2rem;font-weight:600;color:var(--terra);min-width:62px;letter-spacing:-.03em;
 }
 .stat-l{font-size:.7rem;font-weight:600;color:var(--navy);text-transform:uppercase;letter-spacing:.1em}
 .cuidados-section,.como-section,.entrega-section{padding:48px 0 40px;border-bottom:1px solid var(--border)}
 .cuidados-section h2,.como-section h2,.entrega-section h2{
-  font-family:'Cormorant Garamond',serif;
+  font-family:'Nunito',sans-serif;
   font-size:clamp(1.8rem,3.5vw,2.4rem);color:var(--navy);
   line-height:1.05;letter-spacing:-.03em;font-weight:600;margin-bottom:28px;
 }
@@ -372,7 +372,7 @@ a{color:inherit;text-decoration:none}
 }
 .cuidado:hover{box-shadow:var(--shadow-m);transform:translateY(-2px)}
 .cuidado-ico{font-size:1.4rem;margin-bottom:10px}
-.cuidado h3{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--navy);font-weight:600;margin-bottom:6px}
+.cuidado h3{font-family:'Nunito',sans-serif;font-size:1.1rem;color:var(--navy);font-weight:600;margin-bottom:6px}
 .cuidado p{font-size:.78rem;color:var(--txt-2);line-height:1.65;font-weight:300}
 .steps{display:flex;align-items:flex-start;gap:8px;flex-wrap:wrap}
 .step{
@@ -380,10 +380,10 @@ a{color:inherit;text-decoration:none}
   border-radius:var(--r);padding:24px 20px;text-align:center;
 }
 .step-num{
-  font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;
+  font-family:'Nunito',sans-serif;font-size:2rem;font-weight:600;
   color:var(--terra);display:block;margin-bottom:12px;
 }
-.step h3{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--navy);font-weight:600;margin-bottom:8px}
+.step h3{font-family:'Nunito',sans-serif;font-size:1.05rem;color:var(--navy);font-weight:600;margin-bottom:8px}
 .step p{font-size:.78rem;color:var(--txt-2);line-height:1.6;font-weight:300}
 .step-sep{font-size:1.2rem;color:var(--bege-dk);align-self:center}
 .entrega-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
@@ -397,7 +397,7 @@ a{color:inherit;text-decoration:none}
 .entrega-card strong{display:block;color:var(--navy);font-size:.88rem;margin-bottom:4px;font-weight:500}
 .entrega-card p{font-size:.78rem;color:var(--txt-2);margin:0;line-height:1.55;font-weight:300}
 .cta-section{padding:56px 0 0;text-align:center}
-.cta-section h2{font-family:'Cormorant Garamond',serif;font-size:2.2rem;color:var(--navy);font-weight:600;letter-spacing:-.03em;margin-bottom:12px}
+.cta-section h2{font-family:'Nunito',sans-serif;font-size:2.2rem;color:var(--navy);font-weight:600;letter-spacing:-.03em;margin-bottom:12px}
 .cta-section p{color:var(--txt-2);margin-bottom:28px;font-size:.88rem;font-weight:300}
 .btn-cta{
   display:inline-block;background:var(--navy);color:#fff;
@@ -441,7 +441,7 @@ a{color:inherit;text-decoration:none}
 .fab-wrap{
   position:fixed;
   right:20px;
-  bottom:20px;
+  bottom:100px;
 
   z-index:9999;
 
@@ -882,7 +882,7 @@ a{color:inherit;text-decoration:none}
   }
   .produto-acao-preco{
     font-size:1rem;font-weight:600;color:var(--terra);
-    font-family:'Cormorant Garamond',serif;letter-spacing:-.01em;
+    font-family:'Nunito',sans-serif;letter-spacing:-.01em;
   }
   .produto-acao-preco-unit{font-size:.65rem;font-weight:300;color:var(--txt-3);margin-left:3px}
   .btn-add{width:38px;height:38px;font-size:1.2rem}
