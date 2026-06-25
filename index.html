@@ -45,66 +45,121 @@
   </header>
 
   <!-- HERO -->
-  <section class="hero-mini">
-    <div class="hero-floats" aria-hidden="true">
-      <svg class="hf hf-1" viewBox="0 0 40 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M20 2C20 2 6 10 4 24C2 38 14 46 20 46C26 46 38 38 36 24C34 10 20 2 20 2Z" fill="#3a7a3f"
-          opacity=".18" />
-        <path d="M20 2L20 46" stroke="#3a7a3f" stroke-width="1.2" opacity=".25" />
-        <path d="M20 14C16 18 10 22 8 28" stroke="#3a7a3f" stroke-width="1" opacity=".2" />
-        <path d="M20 14C24 18 30 22 32 28" stroke="#3a7a3f" stroke-width="1" opacity=".2" />
-      </svg>
-      <svg class="hf hf-2" viewBox="0 0 40 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M20 2C20 2 6 10 4 24C2 38 14 46 20 46C26 46 38 38 36 24C34 10 20 2 20 2Z" fill="#3a7a3f"
-          opacity=".13" />
-        <path d="M20 2L20 46" stroke="#3a7a3f" stroke-width="1.2" opacity=".18" />
-      </svg>
-      <svg class="hf hf-3" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="22" cy="24" r="16" fill="#b8501e" opacity=".14" />
-        <path d="M22 8C22 8 18 4 14 6" stroke="#3a7a3f" stroke-width="1.5" stroke-linecap="round" opacity=".25" />
-        <path d="M22 8C22 8 22 2 26 4" stroke="#3a7a3f" stroke-width="1.5" stroke-linecap="round" opacity=".25" />
-        <path d="M22 8C22 8 26 4 30 6" stroke="#3a7a3f" stroke-width="1.5" stroke-linecap="round" opacity=".25" />
-      </svg>
-      <svg class="hf hf-4" viewBox="0 0 20 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="10" cy="18" rx="7" ry="16" fill="#cbbfb0" opacity=".35" />
-        <ellipse cx="10" cy="18" rx="4" ry="13" fill="#e3d9cc" opacity=".4" />
-      </svg>
-      <svg class="hf hf-5" viewBox="0 0 20 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="10" cy="18" rx="7" ry="16" fill="#cbbfb0" opacity=".3" />
-        <ellipse cx="10" cy="18" rx="4" ry="13" fill="#e3d9cc" opacity=".35" />
-      </svg>
-      <svg class="hf hf-6" viewBox="0 0 28 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M14 1C14 1 3 8 2 18C1 28 9 33 14 33C19 33 27 28 26 18C25 8 14 1 14 1Z" fill="#3a7a3f" opacity=".12" />
-        <path d="M14 1L14 33" stroke="#3a7a3f" stroke-width="1" opacity=".18" />
-      </svg>
-      <svg class="hf hf-7" viewBox="0 0 16 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M8 2C8 2 4 8 4 18C4 28 6 36 8 38C10 36 12 28 12 18C12 8 8 2 8 2Z" fill="#b8501e" opacity=".15" />
-        <path d="M8 2C8 2 10 0 12 1" stroke="#3a7a3f" stroke-width="1.2" stroke-linecap="round" opacity=".22" />
-      </svg>
-      <svg class="hf hf-8" viewBox="0 0 20 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <ellipse cx="10" cy="18" rx="7" ry="16" fill="#cbbfb0" opacity=".25" />
-      </svg>
-    </div>
-    <div class="hero-mini-inner">
-      <p class="hero-eyebrow">Pizzas e massas sem glúten.</p>
-      <h1>Faça seu <em>pedido</em></h1>
+  <!-- ============================================================
+     HERO CARROSSEL — substitua a <section class="hero-mini"> ATUAL
+     do seu index.html por TODO este bloco.
 
-      <div class="hero-pills">
-        <span class="hero-pill hero-pill-destaque">
-          <span class="hero-pill-icon"></span>
-          <span>5+ do mesmo item = <strong>10% OFF</strong></span>
-        </span>
-        <span class="hero-pill">
-          <span class="hero-pill-icon"></span>
-          <span>Pedido mínimo de<strong> 5 unidades</strong></span>
-        </span>
-        <a href="sobre.html#entrega" class="hero-pill hero-pill-link">
-          <span class="hero-pill-icon"></span>
-          <span>Entrega em <strong>até 24h</strong> — VER DETALHES -</span>
-        </a>
+     Quando a campanha da Copa acabar: delete só o
+     <div class="hero-slide hero-slide-copa" ...> ... </div>
+     e o <button class="hero-dot" data-slide="0">,
+     e tudo volta a funcionar normal com 1 slide só (ou continue
+     adicionando slides novos no mesmo padrão).
+     ============================================================ -->
+
+<section class="hero-mini hero-carrossel" id="hero-carrossel">
+
+  <div class="hero-slides" id="hero-slides">
+
+    <!-- ===================== SLIDE 1 — CAMPANHA COPA (REMOVER QUANDO ACABAR) ===================== -->
+    <div class="hero-slide hero-slide-copa is-active" data-slide-index="0">
+
+      <div class="copa-glow" aria-hidden="true"></div>
+      <div class="copa-chuva-fundo" id="copa-chuva-fundo" aria-hidden="true"></div>
+
+      <div class="copa-conteudo">
+        <div class="copa-copy-painel">
+          <p class="copa-eyebrow">Edição copa</p>
+          <h1 class="copa-titulo">Nhoque sem<br />glúten <em>campeão</em></h1>
+          <p class="copa-sub">Bolinhas de abóbora que fazem gol de placa no seu domingo.</p>
+          <div class="copa-pills">
+            <a href="#produto-nhoque-abobora" class="hero-pill hero-pill-destaque">
+              <span>Novo no cardápio</span>
+            </a>
+            <span class="hero-pill">
+              <span>5+ und = <strong>10% OFF</strong></span>
+            </span>
+          </div>
+        </div>
+
+        <div class="copa-foto-area">
+          <div class="copa-foto-moldura">
+            <div class="copa-foto-wrap">
+              <img src="assets/nhoque-br.jpeg" alt="Nhoque de abóbora ao molho com carne desfiada" class="copa-foto" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- ===================== FIM SLIDE 1 — CAMPANHA COPA ===================== -->
+
+    <!-- ===================== SLIDE 2 — HERO PADRÃO DO SITE (NÃO TOCAR) ===================== -->
+    <div class="hero-slide hero-slide-padrao" data-slide-index="1">
+      <div class="hero-floats" aria-hidden="true">
+        <svg class="hf hf-1" viewBox="0 0 40 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 2C20 2 6 10 4 24C2 38 14 46 20 46C26 46 38 38 36 24C34 10 20 2 20 2Z" fill="#3a7a3f" opacity=".18" />
+          <path d="M20 2L20 46" stroke="#3a7a3f" stroke-width="1.2" opacity=".25" />
+          <path d="M20 14C16 18 10 22 8 28" stroke="#3a7a3f" stroke-width="1" opacity=".2" />
+          <path d="M20 14C24 18 30 22 32 28" stroke="#3a7a3f" stroke-width="1" opacity=".2" />
+        </svg>
+        <svg class="hf hf-2" viewBox="0 0 40 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 2C20 2 6 10 4 24C2 38 14 46 20 46C26 46 38 38 36 24C34 10 20 2 20 2Z" fill="#3a7a3f" opacity=".13" />
+          <path d="M20 2L20 46" stroke="#3a7a3f" stroke-width="1.2" opacity=".18" />
+        </svg>
+        <svg class="hf hf-3" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="22" cy="24" r="16" fill="#b8501e" opacity=".14" />
+          <path d="M22 8C22 8 18 4 14 6" stroke="#3a7a3f" stroke-width="1.5" stroke-linecap="round" opacity=".25" />
+          <path d="M22 8C22 8 22 2 26 4" stroke="#3a7a3f" stroke-width="1.5" stroke-linecap="round" opacity=".25" />
+          <path d="M22 8C22 8 26 4 30 6" stroke="#3a7a3f" stroke-width="1.5" stroke-linecap="round" opacity=".25" />
+        </svg>
+        <svg class="hf hf-4" viewBox="0 0 20 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="10" cy="18" rx="7" ry="16" fill="#cbbfb0" opacity=".35" />
+          <ellipse cx="10" cy="18" rx="4" ry="13" fill="#e3d9cc" opacity=".4" />
+        </svg>
+        <svg class="hf hf-5" viewBox="0 0 20 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="10" cy="18" rx="7" ry="16" fill="#cbbfb0" opacity=".3" />
+          <ellipse cx="10" cy="18" rx="4" ry="13" fill="#e3d9cc" opacity=".35" />
+        </svg>
+        <svg class="hf hf-6" viewBox="0 0 28 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M14 1C14 1 3 8 2 18C1 28 9 33 14 33C19 33 27 28 26 18C25 8 14 1 14 1Z" fill="#3a7a3f" opacity=".12" />
+          <path d="M14 1L14 33" stroke="#3a7a3f" stroke-width="1" opacity=".18" />
+        </svg>
+        <svg class="hf hf-7" viewBox="0 0 16 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 2C8 2 4 8 4 18C4 28 6 36 8 38C10 36 12 28 12 18C12 8 8 2 8 2Z" fill="#b8501e" opacity=".15" />
+          <path d="M8 2C8 2 10 0 12 1" stroke="#3a7a3f" stroke-width="1.2" stroke-linecap="round" opacity=".22" />
+        </svg>
+        <svg class="hf hf-8" viewBox="0 0 20 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="10" cy="18" rx="7" ry="16" fill="#cbbfb0" opacity=".25" />
+        </svg>
+      </div>
+      <div class="hero-mini-inner">
+        <p class="hero-eyebrow">Pizzas e massas sem glúten.</p>
+        <h1>Faça seu <em>pedido</em></h1>
+        <div class="hero-pills">
+          <span class="hero-pill hero-pill-destaque">
+            <span class="hero-pill-icon"></span>
+            <span>5+ do mesmo item = <strong>10% OFF</strong></span>
+          </span>
+          <span class="hero-pill">
+            <span class="hero-pill-icon"></span>
+            <span>Pedido mínimo de<strong> 5 unidades</strong></span>
+          </span>
+          <a href="sobre.html#entrega" class="hero-pill hero-pill-link">
+            <span class="hero-pill-icon"></span>
+            <span>Entrega em <strong>até 24h</strong> — VER DETALHES -</span>
+          </a>
+        </div>
       </div>
     </div>
-  </section>
+    <!-- ===================== FIM SLIDE 2 — HERO PADRÃO ===================== -->
+
+  </div>
+  <div class="hero-dots" id="hero-dots" role="tablist" aria-label="Slides do banner principal">
+    <button class="hero-dot is-active" data-slide="0" role="tab" aria-selected="true" aria-label="Slide 1: Campanha Copa"></button>
+    <button class="hero-dot" data-slide="1" role="tab" aria-selected="false" aria-label="Slide 2: Pedido"></button>
+  </div>
+
+</section>
 
   <!-- FILTRO -->
   <div class="filtro-bar">
@@ -190,6 +245,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="config.js"></script>
   <script src="script.js"></script>
+  <script src="hero-carrossel.js"></script>
 </body>
 
 </html>
